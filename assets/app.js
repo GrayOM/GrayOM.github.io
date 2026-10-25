@@ -150,7 +150,7 @@
     const secDesc = (k) => t((d.sections || {})[k]) || "";
 
     document.documentElement.lang = lang;
-    document.title = `${t(d.name)} (${d.handle})`;
+    document.title = d.handle;
     const meta = document.querySelector('meta[name="description"]');
     if (meta && d.description) meta.setAttribute("content", t(d.description));
 
