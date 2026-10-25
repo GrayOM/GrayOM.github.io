@@ -26,9 +26,9 @@
       credited: "크레딧", writeup: "분석 글", updated: "최종 수정", scroll: "스크롤 ↓",
       stats: { cve: "CVE", other: "GHSA·크레딧", pending: "공개 대기", projects: "프로젝트" },
       bounty: "바운티",
-      pending: (n, b) => `+ 벤더 확인 후 공개 대기 중인 건 <b>${n}</b>건${b ? ` (그중 바운티 ${b}건)` : ""}.`,
+      pending: (n, b) => `+ 벤더 확인을 마치고 공개를 기다리는 건이 <b>${n}</b>건 더 있다${b ? ` (그중 바운티 ${b}건)` : ""}.`,
       langLabel: "언어", navLabel: "섹션",
-      error: "프로필 데이터를 불러오지 못했다. data/profile.json 파일과 JSON 형식을 확인할 것.",
+      error: "프로필 데이터를 불러오지 못했다. data/profile.json 파일이 있는지, JSON 형식이 맞는지 확인할 것.",
     },
   };
 

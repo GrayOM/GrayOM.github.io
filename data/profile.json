@@ -6,11 +6,11 @@
   "handle": "GrayOM",
   "tagline": {
     "en": "Web & mobile penetration tester. I find broken access control in open source.",
-    "ko": "웹·모바일 모의해킹 담당. 오픈소스에서 접근 통제 결함을 찾는다."
+    "ko": "웹·모바일 모의해킹 컨설턴트. 오픈소스의 접근 통제 취약점을 연구한다."
   },
   "description": {
     "en": "Web & mobile penetration tester. Open-source vulnerability research.",
-    "ko": "웹·모바일 모의해킹 담당. 오픈소스 취약점 연구."
+    "ko": "웹·모바일 모의해킹 컨설턴트, 오픈소스 취약점 연구."
   },
   "about": {
     "en": [
@@ -19,15 +19,15 @@
       "Most of what I find is authorization logic: a check that exists, but looks at the wrong value."
     ],
     "ko": [
-      "서울의 모의해킹 팀에서 웹·모바일 서비스를 진단한다.",
-      "업무 외에는 오픈소스 취약점을 찾는다. 모든 대상은 로컬 Docker 랩에서 돌리고, 재현한 것만 제보한다.",
-      "찾는 결함은 대부분 인가 로직이다. 검사는 있는데 엉뚱한 값을 보고 있는 경우."
+      "서울의 모의해킹 팀에서 웹·모바일 서비스 진단을 맡고 있다.",
+      "업무 외에는 오픈소스 취약점을 연구한다. 모든 대상을 로컬 Docker 랩에 띄워 직접 재현하고, 재현된 것만 제보한다.",
+      "주로 찾는 것은 인가 로직의 결함이다. 권한 검사는 있는데, 엉뚱한 값을 기준으로 판단하는 경우가 많다."
     ]
   },
   "research": {
     "intro": {
       "en": "Every finding below was reproduced in a local lab and confirmed by the vendor.",
-      "ko": "아래 항목은 모두 로컬 랩에서 재현했고 벤더가 확인했다."
+      "ko": "모두 로컬 랩에서 재현했고, 벤더가 확인한 건이다."
     },
     "groups": [
       {
@@ -41,7 +41,7 @@
             "target": "frain-dev/convoy",
             "summary": {
               "en": "Cross-project IDOR exposing another tenant's message broker password in plaintext",
-              "ko": "프로젝트 간 IDOR로 다른 테넌트의 메시지 브로커 비밀번호가 평문 노출"
+              "ko": "프로젝트 간 IDOR로 다른 테넌트의 메시지 브로커 비밀번호가 평문으로 노출"
             },
             "severity": "High",
             "cvss": "CVSS 4.0 7.1",
@@ -54,7 +54,7 @@
               },
               "impact": {
                 "en": "Another tenant's message broker password returned in plaintext",
-                "ko": "다른 테넌트의 메시지 브로커 비밀번호를 평문으로 획득"
+                "ko": "다른 테넌트의 메시지 브로커 비밀번호를 평문으로 조회"
               }
             }
           },
@@ -63,7 +63,7 @@
             "target": "teableio/teable",
             "summary": {
               "en": "Share-view scope bypass on by-id selection endpoints: read, overwrite or delete beyond the shared scope (co-reported)",
-              "ko": "공유 뷰 범위 우회: by-id 선택 엔드포인트로 공유 범위 밖 데이터 조회·덮어쓰기·삭제 (공동 제보)"
+              "ko": "공유 뷰 권한 우회. ID 기반 선택 API로 공유 범위 밖 레코드를 조회·수정·삭제 (공동 제보)"
             },
             "severity": "High",
             "cvss": "CVSS 3.1 8.1",
@@ -75,7 +75,7 @@
             "target": "ubicloud/ubicloud",
             "summary": {
               "en": "Two information disclosure issues across projects: UBID resolution and audit-log links",
-              "ko": "프로젝트 간 정보 노출 2건: UBID 조회, 감사 로그 링크"
+              "ko": "프로젝트 간 정보 노출 2건 (UBID 조회, 감사 로그 링크)"
             },
             "severity": "",
             "cvss": "",
@@ -94,7 +94,7 @@
             "target": "supertokens/supertokens-node",
             "summary": {
               "en": "AWS Lambda integration strips the API Gateway stage as a plain string prefix, causing path confusion",
-              "ko": "AWS Lambda 연동에서 API Gateway stage를 문자열 접두사로 잘라내 경로 혼동 발생"
+              "ko": "AWS Lambda 연동이 API Gateway 스테이지를 문자열 접두사로만 잘라내 생기는 경로 혼동"
             },
             "severity": "Moderate",
             "cvss": "CVSS 3.1 5.3",
@@ -106,7 +106,7 @@
       {
         "title": {
           "en": "Server-side request forgery",
-          "ko": "SSRF"
+          "ko": "서버 측 요청 위조(SSRF)"
         },
         "items": [
           {
@@ -114,7 +114,7 @@
             "target": "Swetrix/swetrix",
             "summary": {
               "en": "Unauthenticated read SSRF through SEO tool actions hidden behind a login redirect",
-              "ko": "로그인 리다이렉트 뒤에 가려진 SEO 도구 액션을 통한 비인증 read SSRF"
+              "ko": "로그인 리다이렉트로만 가려진 SEO 도구 기능을 통한 비인증 SSRF (응답 조회 가능)"
             },
             "severity": "High",
             "cvss": "CVSS 3.1 8.6",
@@ -123,11 +123,11 @@
             "featured": {
               "vector": {
                 "en": "SEO tool actions callable without login; the redirect only hid the page",
-                "ko": "로그인 리다이렉트만 걸린 SEO 도구 액션을 비인증으로 호출"
+                "ko": "로그인 리다이렉트만 걸린 SEO 도구 기능을 인증 없이 호출"
               },
               "impact": {
                 "en": "Reads response headers from internal hosts, including cloud metadata endpoints",
-                "ko": "내부 호스트·클라우드 메타데이터 엔드포인트의 응답 헤더 열람"
+                "ko": "내부 호스트와 클라우드 메타데이터 엔드포인트의 응답 헤더 조회"
               }
             }
           }
@@ -144,7 +144,7 @@
             "target": "NangoHQ/nango",
             "summary": {
               "en": "Unauthenticated SQL injection in the task orchestrator via Postgres NOTIFY",
-              "ko": "Postgres NOTIFY를 통한 task orchestrator의 비인증 SQL 인젝션"
+              "ko": "task orchestrator의 Postgres NOTIFY 구문을 통한 비인증 SQL 인젝션"
             },
             "severity": "High",
             "cvss": "CVSS 4.0 7.7",
@@ -153,11 +153,11 @@
             "featured": {
               "vector": {
                 "en": "Attacker-controlled group key interpolated into a Postgres NOTIFY via the unauthenticated orchestrator API",
-                "ko": "비인증 orchestrator API로 전달한 group key가 Postgres NOTIFY 구문에 그대로 삽입됨"
+                "ko": "인증 없는 orchestrator API로 넘긴 group key가 Postgres NOTIFY 구문에 그대로 들어감"
               },
               "impact": {
                 "en": "Arbitrary multi-statement SQL execution on the orchestrator database",
-                "ko": "orchestrator 데이터베이스에서 다중 구문 임의 SQL 실행"
+                "ko": "orchestrator DB에서 여러 SQL 문을 임의로 실행"
               }
             }
           },
@@ -166,7 +166,7 @@
             "target": "teableio/teable",
             "summary": {
               "en": "Base import bypasses identifier validation, letting an ordinary user inject SQL through a physical column name",
-              "ko": "Base 가져오기에서 식별자 검증이 우회돼 일반 사용자가 물리 컬럼명으로 SQL 인젝션"
+              "ko": "Base 가져오기에서 식별자 검증이 빠져, 일반 사용자가 물리 컬럼명으로 SQL 인젝션 가능"
             },
             "severity": "High",
             "cvss": "CVSS 3.1 8.8",
@@ -204,7 +204,7 @@
       "url": "https://grayom.github.io/Hack_guidance",
       "summary": {
         "en": "Web hacking wargame that runs in the browser. Each challenge opens simulated services to investigate, and flags are checked on the server.",
-        "ko": "브라우저에서 돌아가는 웹 해킹 워게임. 문제마다 조사할 가상 서비스가 열리고, 플래그는 서버에서 검증한다."
+        "ko": "브라우저에서 바로 푸는 웹 해킹 워게임. 문제마다 가상 서비스를 조사해 플래그를 찾고, 플래그는 서버에서 검증한다."
       },
       "tags": [
         "React",
@@ -217,7 +217,7 @@
       "url": "https://github.com/GrayOM/Fiddler_Custom_Script",
       "summary": {
         "en": "FiddlerScript rules that flag patterns I check by hand during manual testing. I use it on real engagements.",
-        "ko": "수동 진단 때 직접 확인하는 패턴을 표시해 주는 FiddlerScript 규칙. 실제 진단 업무에서 쓴다."
+        "ko": "수동 진단 중 직접 확인할 패턴을 강조해 주는 FiddlerScript 규칙 모음. 실무 진단에서 쓰고 있다."
       },
       "tags": [
         "FiddlerScript"
@@ -228,7 +228,7 @@
       "url": "https://github.com/GrayOM/AI-Source-Vulnerability-Analyzer-ZIP-",
       "summary": {
         "en": "Upload a frontend source ZIP, get vulnerability candidates and a console PoC to verify each one.",
-        "ko": "프런트엔드 소스 ZIP을 올리면 취약점 후보와 검증용 콘솔 PoC를 만들어 준다."
+        "ko": "프런트엔드 소스 ZIP을 올리면 취약점 후보와, 각 후보를 검증할 콘솔 PoC를 만들어 준다."
       },
       "tags": [
         "FastAPI",
@@ -255,7 +255,7 @@
   "experience_detail": {
     "label": {
       "en": "Detailed career history available on request.",
-      "ko": "상세 경력은 요청 시 제공."
+      "ko": "상세 경력은 요청 시 공유"
     },
     "url": ""
   },
@@ -307,15 +307,15 @@
   "sections": {
     "research": {
       "en": "Open-source vulnerabilities I found, reproduced in a local Docker lab, and reported to vendors.",
-      "ko": "오픈소스에서 찾아 로컬 Docker 랩에서 재현하고 벤더에 제보한 취약점."
+      "ko": "오픈소스에서 직접 찾아 로컬 Docker 랩에서 재현한 뒤, 벤더에 제보한 취약점."
     },
     "projects": {
       "en": "Tools and a wargame I built and still use.",
-      "ko": "직접 만들어 지금도 쓰는 도구와 워게임."
+      "ko": "직접 만들어 실제로 쓰고 있는 도구와 워게임."
     },
     "experience": {
       "en": "Current position.",
-      "ko": "현재 소속."
+      "ko": "현재 소속"
     },
     "credentials": {
       "en": "",
@@ -323,7 +323,7 @@
     },
     "contact": {
       "en": "Email is the fastest way to reach me.",
-      "ko": "연락은 이메일이 가장 빠르다."
+      "ko": "이메일로 연락하면 가장 빨리 답한다."
     }
   },
   "copyright": "© 2026 GrayOM · Seoul"
