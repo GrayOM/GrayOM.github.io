@@ -94,10 +94,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   padding: 96px 24px 72px;
 }
 .home .inner { display: flex; align-items: center; gap: clamp(28px, 6vw, 72px); }
-.home .mark { width: clamp(132px, 19vw, 220px); height: auto; flex: none; }
-.home .mark .s { stroke: var(--fg); }
-.home .mark .t { stroke: var(--line-2); }
-.home .mark .dot { fill: var(--accent); }
+.home .mark { height: clamp(220px, 46vh, 400px); width: auto; flex: none; filter: drop-shadow(0 12px 40px rgba(0, 0, 0, 0.55)); }
 .home .name { margin: 0; font: 800 clamp(3.4rem, 10vw, 7.2rem)/0.95 "Inter", system-ui, sans-serif; letter-spacing: -0.045em; }
 .home .kname { margin: 10px 0 0; font: 500 1.05rem var(--sans); color: var(--fg-2); letter-spacing: 0.02em; }
 .home .line { margin: 18px 0 0; font-size: clamp(1rem, 1.6vw, 1.15rem); color: var(--fg-2); max-width: 34ch; }
@@ -254,7 +251,7 @@ footer { margin: 120px 0 0; padding: 28px 0 40px; border-top: 1px solid var(--li
   .home { padding: 88px 16px 72px; }
   .home .inner { flex-direction: column; text-align: center; gap: 24px; }
   .home .line { margin-left: auto; margin-right: auto; }
-  .home .mark { width: 128px; }
+  .home .mark { height: clamp(170px, 30vh, 230px); }
   .pill a { padding: 6px 10px; font-size: 0.8rem; }
   .stats > div { padding: 18px 16px; }
   .stats .n { font-size: 1.8rem; }

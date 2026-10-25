@@ -58,15 +58,8 @@
   // Entries still marked [TODO ...] are not published.
   const ready = (s) => !/\[TODO/.test(t(s) || "");
 
-  // Geometric G monogram: reticle ticks and corners in line, one emerald point where the bar ends.
-  const MARK = `<svg class="mark" viewBox="0 0 200 200" role="img" aria-label="GrayOM">
-    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <path class="t" stroke-width="2" d="M22 54V22h32M146 22h32v32M178 146v32h-32M54 178H22v-32"/>
-      <path class="t" stroke-width="2" d="M100 6v22M100 172v22M6 100h22M172 100h22"/>
-      <path class="s" stroke-width="11" d="M138.2 61.8A54 54 0 1 0 154 100h-42"/>
-    </g>
-    <circle class="dot" cx="112" cy="100" r="8"/>
-  </svg>`;
+  // Logo artwork lives in assets/logo.png (transparent PNG).
+  const MARK = `<img class="mark" src="assets/logo.png" width="391" height="640" alt="GrayOM logo">`;
 
   const ICONS = {
     mail: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>',
