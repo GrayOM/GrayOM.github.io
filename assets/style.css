@@ -146,7 +146,8 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .badges { display: inline-flex; gap: 6px; flex-wrap: wrap; }
 .badge { font: 500 0.68rem/1 var(--mono); padding: 5px 7px; border-radius: 6px; border: 1px solid var(--line-2); color: var(--fg-2); white-space: nowrap; }
 .badge.high { color: var(--high); border-color: rgba(242, 132, 107, 0.4); background: rgba(242, 132, 107, 0.07); }
-.badge.medium { color: var(--mid); border-color: rgba(230, 185, 104, 0.4); }
+.badge.medium, .badge.moderate { color: var(--mid); border-color: rgba(230, 185, 104, 0.4); }
+.badge.bounty { color: var(--accent); border-color: rgba(52, 211, 153, 0.4); background: var(--accent-dim); }
 
 /* grouped table */
 .groups { display: grid; gap: 28px; }

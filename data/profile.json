@@ -32,8 +32,8 @@
     "groups": [
       {
         "title": {
-          "en": "Multi-tenant isolation",
-          "ko": "멀티테넌트 격리"
+          "en": "Access control & tenant isolation",
+          "ko": "접근 통제·테넌트 격리"
         },
         "items": [
           {
@@ -59,15 +59,46 @@
             }
           },
           {
-            "id": "Credited",
+            "id": "GHSA-2333-p777-m9ww",
+            "target": "teableio/teable",
+            "summary": {
+              "en": "Share-view scope bypass on by-id selection endpoints: read, overwrite or delete beyond the shared scope (co-reported)",
+              "ko": "공유 뷰 범위 우회: by-id 선택 엔드포인트로 공유 범위 밖 데이터 조회·덮어쓰기·삭제 (공동 제보)"
+            },
+            "severity": "High",
+            "cvss": "CVSS 3.1 8.1",
+            "url": "https://github.com/teableio/teable/security/advisories/GHSA-2333-p777-m9ww",
+            "writeup": ""
+          },
+          {
+            "id": "PR #6399",
             "target": "ubicloud/ubicloud",
             "summary": {
-              "en": "Two information disclosure issues: object names from other projects exposed through UBID resolution",
-              "ko": "정보 노출 2건. UBID 조회를 통해 다른 프로젝트의 객체 이름 노출"
+              "en": "Two information disclosure issues across projects: UBID resolution and audit-log links",
+              "ko": "프로젝트 간 정보 노출 2건: UBID 조회, 감사 로그 링크"
             },
             "severity": "",
             "cvss": "",
             "url": "https://github.com/ubicloud/ubicloud/pull/6399",
+            "writeup": "",
+            "refs": [
+              {
+                "label": "#6407",
+                "url": "https://github.com/ubicloud/ubicloud/pull/6407"
+              }
+            ],
+            "bounty": true
+          },
+          {
+            "id": "GHSA-46hr-c4pm-7mx5",
+            "target": "supertokens/supertokens-node",
+            "summary": {
+              "en": "AWS Lambda integration strips the API Gateway stage as a plain string prefix, causing path confusion",
+              "ko": "AWS Lambda 연동에서 API Gateway stage를 문자열 접두사로 잘라내 경로 혼동 발생"
+            },
+            "severity": "Moderate",
+            "cvss": "CVSS 3.1 5.3",
+            "url": "https://github.com/supertokens/supertokens-node/security/advisories/GHSA-46hr-c4pm-7mx5",
             "writeup": ""
           }
         ]
@@ -131,25 +162,41 @@
             }
           },
           {
-            "id": "Credited",
+            "id": "GHSA-gj7m-w85q-hrj7",
+            "target": "teableio/teable",
+            "summary": {
+              "en": "Base import bypasses identifier validation, letting an ordinary user inject SQL through a physical column name",
+              "ko": "Base 가져오기에서 식별자 검증이 우회돼 일반 사용자가 물리 컬럼명으로 SQL 인젝션"
+            },
+            "severity": "High",
+            "cvss": "CVSS 3.1 8.8",
+            "url": "https://github.com/teableio/teable/security/advisories/GHSA-gj7m-w85q-hrj7",
+            "writeup": ""
+          },
+          {
+            "id": "v3.8.8",
             "target": "strangerstudios/paid-memberships-pro",
             "summary": {
-              "en": "Security fix for user-field file uploads, credited in the 3.8.8 release notes",
-              "ko": "사용자 필드 파일 업로드 보안 수정, 3.8.8 릴리스 노트에 크레딧"
+              "en": "Member file uploads exposed; fixed in 3.8.8 with per-user upload folders",
+              "ko": "회원 업로드 파일 노출. 3.8.8에서 사용자별 업로드 폴더로 수정"
             },
             "severity": "",
             "cvss": "",
             "url": "https://github.com/strangerstudios/paid-memberships-pro/releases/tag/3.8.8",
-            "writeup": ""
+            "writeup": "",
+            "refs": [
+              {
+                "label": "#3847",
+                "url": "https://github.com/strangerstudios/paid-memberships-pro/pull/3847"
+              }
+            ],
+            "bounty": true
           }
         ]
       }
     ],
-    "pending_note": {
-      "en": "6 more findings are confirmed by vendors and pending publication.",
-      "ko": "벤더 확인 후 공개 대기 중인 건이 6건 더 있다."
-    },
-    "pending": 6
+    "pending": 7,
+    "pending_rewarded": 1
   },
   "projects": [
     {

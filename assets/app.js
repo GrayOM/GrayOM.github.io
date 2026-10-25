@@ -13,7 +13,8 @@
       featured: "Featured", all: "All findings", target: "TARGET", vector: "VECTOR", impact: "IMPACT",
       credited: "Credited", writeup: "write-up", updated: "Last updated", scroll: "scroll ↓",
       stats: { cve: "CVEs", other: "GHSA & credits", pending: "Pending disclosure", projects: "Projects" },
-      pending: (n) => `+ <b>${n}</b> more confirmed by vendors, pending publication.`,
+      bounty: "Bounty",
+      pending: (n, b) => `+ <b>${n}</b> more confirmed by vendors, pending publication${b ? ` (${b} of them rewarded)` : ""}.`,
       langLabel: "Language", navLabel: "Sections",
       error: "Could not load profile data. Check that data/profile.json exists and is valid JSON.",
     },
@@ -24,7 +25,8 @@
       featured: "대표 사례", all: "전체 목록", target: "TARGET", vector: "VECTOR", impact: "IMPACT",
       credited: "크레딧", writeup: "분석 글", updated: "최종 수정", scroll: "스크롤 ↓",
       stats: { cve: "CVE", other: "GHSA·크레딧", pending: "공개 대기", projects: "프로젝트" },
-      pending: (n) => `+ 벤더 확인 후 공개 대기 중인 건 <b>${n}</b>건.`,
+      bounty: "바운티",
+      pending: (n, b) => `+ 벤더 확인 후 공개 대기 중인 건 <b>${n}</b>건${b ? ` (그중 바운티 ${b}건)` : ""}.`,
       langLabel: "언어", navLabel: "섹션",
       error: "프로필 데이터를 불러오지 못했다. data/profile.json 파일과 JSON 형식을 확인할 것.",
     },
@@ -71,7 +73,7 @@
   const badges = (f) =>
     `<span class="badges">${f.severity ? `<span class="badge ${esc(f.severity.toLowerCase())}">${esc(f.severity)}</span>` : ""}${
       f.cvss ? `<span class="badge">${esc(f.cvss)}</span>` : ""
-    }</span>`;
+    }${f.bounty ? `<span class="badge bounty">${esc(UI[lang].bounty)}</span>` : ""}</span>`;
 
   const head = (n, id, title, desc) =>
     `<div class="reveal"><div class="label">${String(n).padStart(2, "0")} — ${esc(id)}</div><h2>${esc(title)}</h2>${
@@ -143,14 +145,14 @@
             (f) => `<div class="row">
               <div class="id">${ext(f.url, `${esc(f.id === "Credited" ? ui.credited : f.id)} ↗`)}</div>
               <div><span class="repo">${esc(f.target)}</span> <span class="what">· ${esc(t(f.summary))}</span>${
-                f.writeup ? ` ${ext(f.writeup, esc(ui.writeup))}` : ""
+                (f.refs || []).map((x) => ` ${ext(x.url, `${esc(x.label)} ↗`)}`).join("")}${f.writeup ? ` ${ext(f.writeup, esc(ui.writeup))}` : ""
               }</div>
               ${badges(f)}
             </div>`
           )
           .join("")}</div>`
       )
-      .join("")}</div>${r.pending ? `<p class="pending reveal">${ui.pending(esc(r.pending))}</p>` : ""}`;
+      .join("")}</div>${r.pending ? `<p class="pending reveal">${ui.pending(esc(r.pending), esc(r.pending_rewarded || 0))}</p>` : ""}`;
 
     // ── projects
     const projHtml = `<div class="grid">${projects
