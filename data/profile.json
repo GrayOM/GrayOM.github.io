@@ -1,0 +1,120 @@
+{
+  "name": "Seungmin Park",
+  "handle": "GrayOM",
+  "tagline": "Web & mobile penetration tester. I find broken access control in open source.",
+  "about": [
+    "I work on a penetration testing team in Seoul, testing web and mobile services for finance and public-sector clients.",
+    "Outside work I hunt for vulnerabilities in open-source software. I run every target in a local Docker lab and only report what I can reproduce.",
+    "Most of what I find is authorization logic: a check that exists, but looks at the wrong value."
+  ],
+  "research": {
+    "intro": "Every finding below was reproduced in a local lab and confirmed by the vendor.",
+    "groups": [
+      {
+        "title": "Multi-tenant isolation",
+        "items": [
+          {
+            "id": "CVE-2026-81505",
+            "target": "frain-dev/convoy",
+            "summary": "Cross-project IDOR exposing another tenant's message broker password in plaintext",
+            "severity": "High",
+            "url": "https://github.com/frain-dev/convoy/security/advisories/GHSA-p5vg-v7mj-f6q4",
+            "writeup": ""
+          },
+          {
+            "id": "Credited",
+            "target": "ubicloud/ubicloud",
+            "summary": "Information disclosure across projects",
+            "severity": "Low",
+            "url": "https://github.com/ubicloud/ubicloud/pull/6399",
+            "writeup": ""
+          }
+        ]
+      },
+      {
+        "title": "Server-side request forgery",
+        "items": [
+          {
+            "id": "CVE-2026-81506",
+            "target": "Swetrix/swetrix",
+            "summary": "Unauthenticated read SSRF through SEO tool actions hidden behind a login redirect",
+            "severity": "High",
+            "url": "https://github.com/Swetrix/swetrix/security/advisories/GHSA-fcm9-fvcm-3p55",
+            "writeup": ""
+          }
+        ]
+      },
+      {
+        "title": "Injection & file exposure",
+        "items": [
+          {
+            "id": "GHSA-8m28-9wcj-v8ww",
+            "target": "NangoHQ/nango",
+            "summary": "SQL injection",
+            "severity": "High",
+            "url": "https://github.com/NangoHQ/nango/security/advisories/GHSA-8m28-9wcj-v8ww",
+            "writeup": ""
+          },
+          {
+            "id": "Credited",
+            "target": "strangerstudios/paid-memberships-pro",
+            "summary": "Member file uploads exposed to unauthorized users",
+            "severity": "Medium",
+            "url": "https://github.com/strangerstudios/paid-memberships-pro/releases/tag/3.8.8",
+            "writeup": ""
+          }
+        ]
+      }
+    ],
+    "pending_note": "6 more findings are confirmed by vendors and waiting for publication."
+  },
+  "projects": [
+    {
+      "name": "Hack Guidance",
+      "url": "https://grayom.github.io/Hack_guidance/",
+      "summary": "[TODO: one-line description] Browser-based wargame for practicing web security.",
+      "tags": ["React", "Supabase"]
+    },
+    {
+      "name": "Fiddler Custom Script",
+      "url": "https://github.com/GrayOM/Fiddler_Custom_Script",
+      "summary": "FiddlerScript rules that flag patterns I check by hand during manual testing. I use it on real engagements.",
+      "tags": ["FiddlerScript"]
+    },
+    {
+      "name": "AI Source Vulnerability Analyzer",
+      "url": "https://github.com/GrayOM/AI-Source-Vulnerability-Analyzer-ZIP-",
+      "summary": "Upload a frontend source ZIP, get vulnerability candidates and a console PoC to verify each one.",
+      "tags": ["FastAPI", "Python"]
+    }
+  ],
+  "experience": [
+    {
+      "org": "Cyberone",
+      "role": "Penetration Tester, Web & Mobile",
+      "period": "2025.04 - Present"
+    }
+  ],
+  "experience_detail": {
+    "label": "Full career description (Notion, on request)",
+    "url": ""
+  },
+  "awards": [
+    { "title": "[TODO: award or CTF result]", "detail": "", "year": "" }
+  ],
+  "certs": [
+    { "title": "Network Administrator Level 2", "year": "2019" },
+    { "title": "Linux Master Level 2", "year": "2018" }
+  ],
+  "education": [
+    { "title": "B.S. Software Convergence, Hallym University", "year": "2025" }
+  ],
+  "contact": {
+    "email": "tmdals7205@gmail.com",
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/GrayOM" },
+      { "label": "Blog", "url": "https://grayom.tistory.com" }
+    ]
+  },
+  "updated": "2026-10"
+}
