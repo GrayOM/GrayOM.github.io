@@ -5,24 +5,16 @@
   },
   "handle": "GrayOM",
   "tagline": {
-    "en": "Web & mobile penetration tester. I find broken access control in open source.",
-    "ko": "웹·모바일 모의해킹 컨설턴트. 오픈소스의 접근 통제 취약점을 연구한다."
+    "en": "Penetration Tester",
+    "ko": "모의해킹 컨설턴트"
   },
   "description": {
-    "en": "Web & mobile penetration tester. Open-source vulnerability research.",
-    "ko": "웹·모바일 모의해킹 컨설턴트, 오픈소스 취약점 연구."
+    "en": "Penetration Tester",
+    "ko": "모의해킹 컨설턴트"
   },
   "about": {
-    "en": [
-      "I work on a penetration testing team in Seoul, testing web and mobile services.",
-      "Outside work I hunt for vulnerabilities in open-source software. I run every target in a local Docker lab and only report what I can reproduce.",
-      "Most of what I find is authorization logic: a check that exists, but looks at the wrong value."
-    ],
-    "ko": [
-      "서울의 모의해킹 팀에서 웹·모바일 서비스 진단을 맡고 있다.",
-      "업무 외에는 오픈소스 취약점을 연구한다. 모든 대상을 로컬 Docker 랩에 띄워 직접 재현하고, 재현된 것만 제보한다.",
-      "주로 찾는 것은 인가 로직의 결함이다. 권한 검사는 있는데, 엉뚱한 값을 기준으로 판단하는 경우가 많다."
-    ]
+    "en": [],
+    "ko": []
   },
   "research": {
     "intro": {
@@ -1000,8 +992,8 @@
         "ko": "싸이버원"
       },
       "role": {
-        "en": "Penetration Tester, Web & Mobile",
-        "ko": "모의해킹 담당 (웹·모바일)"
+        "en": "Penetration Testing Team",
+        "ko": "모의해킹팀"
       },
       "period": {
         "en": "2025.04 - Present",
@@ -1063,24 +1055,24 @@
   "updated": "2026-10",
   "sections": {
     "research": {
-      "en": "Open-source vulnerabilities I found, reproduced in a local Docker lab, and reported to vendors.",
-      "ko": "오픈소스에서 직접 찾아 로컬 Docker 랩에서 재현한 뒤, 벤더에 제보한 취약점."
+      "en": "",
+      "ko": ""
     },
     "projects": {
-      "en": "What each project is for and how it works. Select one for details.",
-      "ko": "프로젝트마다 왜 만들었고 어떻게 동작하는지 정리했다. 눌러서 자세히 볼 수 있다."
+      "en": "",
+      "ko": ""
     },
     "experience": {
-      "en": "Current position.",
-      "ko": "현재 소속"
+      "en": "",
+      "ko": ""
     },
     "credentials": {
       "en": "",
       "ko": ""
     },
     "contact": {
-      "en": "Email is the fastest way to reach me.",
-      "ko": "이메일로 연락하면 가장 빨리 답한다."
+      "en": "",
+      "ko": ""
     }
   },
   "copyright": "© 2026 GrayOM · Seoul"

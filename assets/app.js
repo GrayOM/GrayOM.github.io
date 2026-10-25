@@ -180,7 +180,7 @@
       <div class="stats reveal">${stats
         .map(([n, l, a]) => `<div><div class="n${a ? " accent" : ""}">${esc(n)}</div><div class="l">${esc(l)}</div></div>`)
         .join("")}</div>
-      <div class="lead reveal">${(t(d.about) || []).map((p) => `<p>${esc(p)}</p>`).join("")}</div>
+      ${(t(d.about) || []).length ? `<div class="lead reveal">${t(d.about).map((p) => `<p>${esc(p)}</p>`).join("")}</div>` : ""}
     </div>`;
 
     // ── research
@@ -231,7 +231,7 @@
     const det = d.experience_detail;
     const expHtml = `<div class="tl reveal">${(d.experience || [])
       .map(
-        (e) => `<div class="item"><div><span class="org">${esc(t(e.org))}</span> <span class="role">· ${esc(t(e.role))}</span></div><div class="period">${esc(
+        (e) => `<div class="item"><div><span class="org">${esc(t(e.org))}</span>${t(e.role) ? ` <span class="role">${esc(t(e.role))}</span>` : ""}</div><div class="period">${esc(
           t(e.period)
         )}</div></div>`
       )
