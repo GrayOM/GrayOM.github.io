@@ -160,7 +160,7 @@
         ${MARK}
         <div>
           <h1 class="name">${esc(d.handle)}</h1>
-          ${lang === "ko" ? `<p class="kname">${esc(t(d.name))}</p>` : ""}
+          <p class="kname">${esc(t(d.name))}</p>
           <p class="line">${esc(t(d.tagline))}</p>
           ${d.copyright ? `<p class="copy">${esc(d.copyright)}</p>` : ""}
         </div>
@@ -213,7 +213,7 @@
           )
           .join("")}</div>`
       )
-      .join("")}</div>${r.pending ? `<p class="pending reveal">${ui.pending(esc(r.pending), esc(r.pending_rewarded || 0))}</p>` : ""}`;
+      .join("")}</div>`;
 
     // ── projects
     const projHtml = `<div class="grid">${projects
