@@ -1,22 +1,48 @@
 {
-  "name": "Seungmin Park",
+  "name": {
+    "en": "Seungmin Park",
+    "ko": "박승민"
+  },
   "handle": "GrayOM",
-  "tagline": "Web & mobile penetration tester. I find broken access control in open source.",
-  "about": [
-    "I work on a penetration testing team in Seoul, testing web and mobile services.",
-    "Outside work I hunt for vulnerabilities in open-source software. I run every target in a local Docker lab and only report what I can reproduce.",
-    "Most of what I find is authorization logic: a check that exists, but looks at the wrong value."
-  ],
+  "tagline": {
+    "en": "Web & mobile penetration tester. I find broken access control in open source.",
+    "ko": "웹·모바일 모의해킹 담당. 오픈소스에서 접근 통제 결함을 찾는다."
+  },
+  "description": {
+    "en": "Web & mobile penetration tester. Open-source vulnerability research.",
+    "ko": "웹·모바일 모의해킹 담당. 오픈소스 취약점 연구."
+  },
+  "about": {
+    "en": [
+      "I work on a penetration testing team in Seoul, testing web and mobile services.",
+      "Outside work I hunt for vulnerabilities in open-source software. I run every target in a local Docker lab and only report what I can reproduce.",
+      "Most of what I find is authorization logic: a check that exists, but looks at the wrong value."
+    ],
+    "ko": [
+      "서울의 모의해킹 팀에서 웹·모바일 서비스를 진단한다.",
+      "업무 외에는 오픈소스 취약점을 찾는다. 모든 대상은 로컬 Docker 랩에서 돌리고, 재현한 것만 제보한다.",
+      "찾는 결함은 대부분 인가 로직이다. 검사는 있는데 엉뚱한 값을 보고 있는 경우."
+    ]
+  },
   "research": {
-    "intro": "Every finding below was reproduced in a local lab and confirmed by the vendor.",
+    "intro": {
+      "en": "Every finding below was reproduced in a local lab and confirmed by the vendor.",
+      "ko": "아래 항목은 모두 로컬 랩에서 재현했고 벤더가 확인했다."
+    },
     "groups": [
       {
-        "title": "Multi-tenant isolation",
+        "title": {
+          "en": "Multi-tenant isolation",
+          "ko": "멀티테넌트 격리"
+        },
         "items": [
           {
             "id": "CVE-2026-81505",
             "target": "frain-dev/convoy",
-            "summary": "Cross-project IDOR exposing another tenant's message broker password in plaintext",
+            "summary": {
+              "en": "Cross-project IDOR exposing another tenant's message broker password in plaintext",
+              "ko": "프로젝트 간 IDOR로 다른 테넌트의 메시지 브로커 비밀번호가 평문 노출"
+            },
             "severity": "High",
             "cvss": "CVSS 4.0 7.1",
             "url": "https://github.com/frain-dev/convoy/security/advisories/GHSA-p5vg-v7mj-f6q4",
@@ -25,7 +51,10 @@
           {
             "id": "Credited",
             "target": "ubicloud/ubicloud",
-            "summary": "Two information disclosure issues: object names from other projects exposed through UBID resolution",
+            "summary": {
+              "en": "Two information disclosure issues: object names from other projects exposed through UBID resolution",
+              "ko": "정보 노출 2건. UBID 조회를 통해 다른 프로젝트의 객체 이름 노출"
+            },
             "severity": "",
             "cvss": "",
             "url": "https://github.com/ubicloud/ubicloud/pull/6399",
@@ -34,12 +63,18 @@
         ]
       },
       {
-        "title": "Server-side request forgery",
+        "title": {
+          "en": "Server-side request forgery",
+          "ko": "SSRF"
+        },
         "items": [
           {
             "id": "CVE-2026-81506",
             "target": "Swetrix/swetrix",
-            "summary": "Unauthenticated read SSRF through SEO tool actions hidden behind a login redirect",
+            "summary": {
+              "en": "Unauthenticated read SSRF through SEO tool actions hidden behind a login redirect",
+              "ko": "로그인 리다이렉트 뒤에 가려진 SEO 도구 액션을 통한 비인증 read SSRF"
+            },
             "severity": "High",
             "cvss": "CVSS 3.1 8.6",
             "url": "https://github.com/Swetrix/swetrix/security/advisories/GHSA-fcm9-fvcm-3p55",
@@ -48,12 +83,18 @@
         ]
       },
       {
-        "title": "Injection & file exposure",
+        "title": {
+          "en": "Injection & file exposure",
+          "ko": "인젝션·파일 노출"
+        },
         "items": [
           {
             "id": "GHSA-8m28-9wcj-v8ww",
             "target": "NangoHQ/nango",
-            "summary": "Unauthenticated SQL injection in the task orchestrator via Postgres NOTIFY",
+            "summary": {
+              "en": "Unauthenticated SQL injection in the task orchestrator via Postgres NOTIFY",
+              "ko": "Postgres NOTIFY를 통한 task orchestrator의 비인증 SQL 인젝션"
+            },
             "severity": "High",
             "cvss": "CVSS 4.0 7.7",
             "url": "https://github.com/NangoHQ/nango/security/advisories/GHSA-8m28-9wcj-v8ww",
@@ -62,7 +103,10 @@
           {
             "id": "Credited",
             "target": "strangerstudios/paid-memberships-pro",
-            "summary": "Security fix for user-field file uploads, credited in the 3.8.8 release notes",
+            "summary": {
+              "en": "Security fix for user-field file uploads, credited in the 3.8.8 release notes",
+              "ko": "사용자 필드 파일 업로드 보안 수정, 3.8.8 릴리스 노트에 크레딧"
+            },
             "severity": "",
             "cvss": "",
             "url": "https://github.com/strangerstudios/paid-memberships-pro/releases/tag/3.8.8",
@@ -71,13 +115,19 @@
         ]
       }
     ],
-    "pending_note": "6 more findings are confirmed by vendors and pending publication."
+    "pending_note": {
+      "en": "6 more findings are confirmed by vendors and pending publication.",
+      "ko": "벤더 확인 후 공개 대기 중인 건이 6건 더 있다."
+    }
   },
   "projects": [
     {
       "name": "Hack Guidance",
       "url": "https://grayom.github.io/Hack_guidance",
-      "summary": "Web hacking wargame that runs in the browser. Each challenge opens simulated services to investigate, and flags are checked on the server.",
+      "summary": {
+        "en": "Web hacking wargame that runs in the browser. Each challenge opens simulated services to investigate, and flags are checked on the server.",
+        "ko": "브라우저에서 돌아가는 웹 해킹 워게임. 문제마다 조사할 가상 서비스가 열리고, 플래그는 서버에서 검증한다."
+      },
       "tags": [
         "React",
         "Supabase",
@@ -87,7 +137,10 @@
     {
       "name": "Fiddler Custom Script",
       "url": "https://github.com/GrayOM/Fiddler_Custom_Script",
-      "summary": "FiddlerScript rules that flag patterns I check by hand during manual testing. I use it on real engagements.",
+      "summary": {
+        "en": "FiddlerScript rules that flag patterns I check by hand during manual testing. I use it on real engagements.",
+        "ko": "수동 진단 때 직접 확인하는 패턴을 표시해 주는 FiddlerScript 규칙. 실제 진단 업무에서 쓴다."
+      },
       "tags": [
         "FiddlerScript"
       ]
@@ -95,7 +148,10 @@
     {
       "name": "AI Source Vulnerability Analyzer",
       "url": "https://github.com/GrayOM/AI-Source-Vulnerability-Analyzer-ZIP-",
-      "summary": "Upload a frontend source ZIP, get vulnerability candidates and a console PoC to verify each one.",
+      "summary": {
+        "en": "Upload a frontend source ZIP, get vulnerability candidates and a console PoC to verify each one.",
+        "ko": "프런트엔드 소스 ZIP을 올리면 취약점 후보와 검증용 콘솔 PoC를 만들어 준다."
+      },
       "tags": [
         "FastAPI",
         "Python"
@@ -104,29 +160,50 @@
   ],
   "experience": [
     {
-      "org": "Cyberone",
-      "role": "Penetration Tester, Web & Mobile",
-      "period": "2025.04 - Present"
+      "org": {
+        "en": "Cyberone",
+        "ko": "싸이버원"
+      },
+      "role": {
+        "en": "Penetration Tester, Web & Mobile",
+        "ko": "모의해킹 담당 (웹·모바일)"
+      },
+      "period": {
+        "en": "2025.04 - Present",
+        "ko": "2025.04 - 현재"
+      }
     }
   ],
   "experience_detail": {
-    "label": "Detailed career history available on request.",
+    "label": {
+      "en": "Detailed career history available on request.",
+      "ko": "상세 경력은 요청 시 제공."
+    },
     "url": ""
   },
   "awards": [],
   "certs": [
     {
-      "title": "Network Administrator Level 2",
+      "title": {
+        "en": "Network Administrator Level 2",
+        "ko": "네트워크관리사 2급"
+      },
       "year": "2019"
     },
     {
-      "title": "Linux Master Level 2",
+      "title": {
+        "en": "Linux Master Level 2",
+        "ko": "리눅스마스터 2급"
+      },
       "year": "2018"
     }
   ],
   "education": [
     {
-      "title": "B.S. Software Convergence, Hallym University",
+      "title": {
+        "en": "B.S. Software Convergence, Hallym University",
+        "ko": "한림대학교 소프트웨어융합 학사"
+      },
       "year": "2025"
     }
   ],
@@ -138,7 +215,10 @@
         "url": "https://github.com/GrayOM"
       },
       {
-        "label": "Blog",
+        "label": {
+          "en": "Blog",
+          "ko": "블로그"
+        },
         "url": "https://grayom.tistory.com"
       }
     ]

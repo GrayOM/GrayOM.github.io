@@ -9,8 +9,8 @@
   --high: #f0876f;
   --mid: #e3b766;
   --low: #8aa0b4;
-  --sans: "IBM Plex Sans", "Pretendard", system-ui, sans-serif;
-  --mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
+  --sans: "IBM Plex Sans", "Noto Sans KR", "Pretendard", system-ui, sans-serif;
+  --mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, "Noto Sans KR", monospace;
   color-scheme: dark;
 }
 
@@ -41,7 +41,13 @@ header h1 {
 }
 header .handle { color: var(--muted); font: 400 0.95rem var(--mono); margin-top: 4px; }
 header .tagline { margin: 18px 0 0; font-size: 1.05rem; text-wrap: balance; }
-header nav { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 18px; font: 0.85rem var(--mono); }
+header .bar { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 18px; margin-top: 18px; }
+header nav { display: flex; flex-wrap: wrap; gap: 6px 18px; font: 0.85rem var(--mono); }
+.lang { display: flex; align-items: baseline; gap: 6px; font: 0.8rem var(--mono); color: var(--muted); }
+.lang button { background: none; border: 0; padding: 2px 0; font: inherit; color: var(--muted); cursor: pointer; }
+.lang button:hover { color: var(--fg); }
+.lang button.on { color: var(--accent); font-weight: 600; }
+.lang button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
 
 section { margin-top: 56px; }
 section h2 {
@@ -103,3 +109,6 @@ footer { margin-top: 72px; font: 0.78rem var(--mono); color: var(--muted); }
   .finding { grid-template-columns: 1fr; }
   header h1 { font-size: 1.6rem; }
 }
+
+/* Korean runs a little tighter; keep words whole when wrapping. */
+html[lang="ko"] body { word-break: keep-all; overflow-wrap: anywhere; }
