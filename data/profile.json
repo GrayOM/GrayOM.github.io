@@ -6,7 +6,7 @@
   "handle": "GrayOM",
   "tagline": {
     "en": "Web & mobile penetration tester. I find broken access control in open source.",
-    "ko": "웹·모바일 모의해킹 담당. 오픈소스에서 접근 통제 결함을 찾는다."
+    "ko": "웹·모바일 모의해킹 담당. 오픈소스에서 접근 통제 결함을 찾는다."
   },
   "description": {
     "en": "Web & mobile penetration tester. Open-source vulnerability research.",
@@ -95,8 +95,8 @@
                 "ko": "로그인 리다이렉트만 걸린 SEO 도구 액션을 비인증으로 호출"
               },
               "impact": {
-                "en": "Server fetches attacker-chosen URLs and returns the response",
-                "ko": "서버가 공격자가 지정한 URL을 요청하고 응답을 돌려줌"
+                "en": "Reads response headers from internal hosts, including cloud metadata endpoints",
+                "ko": "내부 호스트·클라우드 메타데이터 엔드포인트의 응답 헤더 열람"
               }
             }
           }
@@ -121,12 +121,12 @@
             "writeup": "",
             "featured": {
               "vector": {
-                "en": "Unauthenticated input reaching a Postgres NOTIFY statement in the task orchestrator",
-                "ko": "task orchestrator의 Postgres NOTIFY 구문에 비인증 입력이 그대로 들어감"
+                "en": "Attacker-controlled group key interpolated into a Postgres NOTIFY via the unauthenticated orchestrator API",
+                "ko": "비인증 orchestrator API로 전달한 group key가 Postgres NOTIFY 구문에 그대로 삽입됨"
               },
               "impact": {
-                "en": "SQL injection against the orchestrator database",
-                "ko": "orchestrator 데이터베이스에 대한 SQL 인젝션"
+                "en": "Arbitrary multi-statement SQL execution on the orchestrator database",
+                "ko": "orchestrator 데이터베이스에서 다중 구문 임의 SQL 실행"
               }
             }
           },

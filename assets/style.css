@@ -35,7 +35,8 @@ body {
   background-attachment: fixed;
   overflow-x: hidden;
 }
-html[lang="ko"] body { word-break: keep-all; overflow-wrap: anywhere; }
+/* Korean wraps at spaces only; overflow-wrap still rescues a single string wider than its box. */
+html[lang="ko"], html[lang="ko"] * { word-break: keep-all; overflow-wrap: break-word; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 a { color: var(--accent); text-decoration: none; }
