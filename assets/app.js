@@ -9,12 +9,14 @@
       about: "About", research: "Research", projects: "Projects", experience: "Experience", contact: "Contact",
       awards: "Awards", certs: "Certifications", education: "Education",
       credited: "Credited", writeup: "write-up", email: "email", updated: "Last updated",
+      short: { awards: "Awards", certs: "Certs", education: "Education" }, join: " & ",
       langLabel: "Language", error: "Could not load profile data. Check that data/profile.json exists and is valid JSON.",
     },
     ko: {
       about: "소개", research: "연구", projects: "프로젝트", experience: "경력", contact: "연락처",
       awards: "수상", certs: "자격증", education: "학력",
       credited: "크레딧", writeup: "분석 글", email: "이메일", updated: "최종 수정",
+      short: { awards: "수상", certs: "자격", education: "학력" }, join: "·",
       langLabel: "언어", error: "프로필 데이터를 불러오지 못했다. data/profile.json 파일과 JSON 형식을 확인할 것.",
     },
   };
@@ -106,7 +108,9 @@
     const credentials = blocks
       .map(([k, items], i) => `<h3 class="sub"${i ? ' style="margin-top:20px"' : ""}>${esc(ui[k])}</h3>${list(items)}`)
       .join("");
-    const credTitle = blocks.map(([k]) => k).filter((k) => k !== "education").map((k) => ui[k]).join(" & ") || ui.education;
+    // Section title names what is shown, e.g. "Certs & Education"; once awards exist it becomes "Awards & Certs".
+    const shown = blocks.map(([k]) => k);
+    const credTitle = (shown.includes("awards") ? shown.filter((k) => k !== "education") : shown).map((k) => ui.short[k]).join(ui.join);
 
     const c = d.contact || {};
     const contact =
