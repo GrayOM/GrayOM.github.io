@@ -15,6 +15,8 @@
       stats: { cve: "CVEs", other: "GHSA & credits", pending: "Pending disclosure", projects: "Projects" },
       bounty: "Bounty",
       pending: (n, b) => `+ <b>${n}</b> more confirmed by vendors, pending publication${b ? ` (${b} of them rewarded)` : ""}.`,
+      back: "← All projects", why: "Why I built it", features: "Features", flow: "How it works", principles: "Principles",
+      prev: "Previous", next: "Next", open: "Details",
       langLabel: "Language", navLabel: "Sections",
       error: "Could not load profile data. Check that data/profile.json exists and is valid JSON.",
     },
@@ -27,6 +29,8 @@
       stats: { cve: "CVE", other: "GHSA·크레딧", pending: "공개 대기", projects: "프로젝트" },
       bounty: "바운티",
       pending: (n, b) => `+ 벤더 확인을 마치고 공개를 기다리는 건이 <b>${n}</b>건 더 있다${b ? ` (그중 바운티 ${b}건)` : ""}.`,
+      back: "← 프로젝트 목록", why: "만든 이유", features: "주요 기능", flow: "동작 흐름", principles: "원칙",
+      prev: "이전", next: "다음", open: "자세히",
       langLabel: "언어", navLabel: "섹션",
       error: "프로필 데이터를 불러오지 못했다. data/profile.json 파일이 있는지, JSON 형식이 맞는지 확인할 것.",
     },
@@ -80,8 +84,72 @@
       desc ? `<p class="desc">${esc(desc)}</p>` : ""
     }</div>`;
 
+  // ?p=<slug> opens a project's detail view; everything else is the one-page index.
+  const currentSlug = () => new URLSearchParams(location.search).get("p");
+  const pageUrl = (slug, hash) => `./?${slug ? `p=${encodeURIComponent(slug)}&` : ""}lang=${lang}${hash ? `#${hash}` : ""}`;
+
+  function navHtml(ids, detail) {
+    const ui = UI[lang];
+    return `<nav class="pill" aria-label="${esc(ui.navLabel)}">
+      <div class="links">${ids
+        .map((id) => `<a href="${detail ? pageUrl("", id) : `#${id}`}" data-id="${id}">${esc(ui[id])}</a>`)
+        .join("")}</div>
+      <div class="lang" role="group" aria-label="${esc(ui.langLabel)}">${LANGS.map(
+        (l) => `<button type="button" data-lang="${l}" aria-pressed="${l === lang}"${l === lang ? ' class="on"' : ""}>${l.toUpperCase()}</button>`
+      ).join('<span aria-hidden="true">/</span>')}</div>
+    </nav>`;
+  }
+
+  function renderProject(d, list, i) {
+    const ui = UI[lang];
+    const p = list[i];
+    const pad = (n) => String(n).padStart(2, "0");
+    document.documentElement.lang = lang;
+    document.title = `${p.name} · ${d.handle}`;
+    const links = (p.links || []).map((l) => `<a class="btn" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(t(l.label))} ↗</a>`).join("");
+    const block = (label, html) => (html ? `<section class="dsec reveal"><h2 class="sub">${esc(label)}</h2>${html}</section>` : "");
+    const why = (t(p.why) || []).map((x) => `<p>${esc(x)}</p>`).join("");
+    const feats = (p.features || []).length
+      ? `<div class="fgrid">${p.features
+          .map((f) => `<div class="card feat-item"><h3>${esc(t(f.title))}</h3><p>${esc(t(f.text))}</p></div>`)
+          .join("")}</div>`
+      : "";
+    const flow = (t(p.flow) || []).length
+      ? `<ol class="flow">${t(p.flow).map((x, k) => `<li><span class="k">${pad(k + 1)}</span><span>${esc(x)}</span></li>`).join("")}</ol>`
+      : "";
+    const principles = (t(p.principles) || []).length ? `<ul class="principles">${t(p.principles).map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : "";
+    const prev = list[i - 1], next = list[i + 1];
+    const pager = `<div class="pager">${
+      prev ? `<a class="card" href="${pageUrl(prev.slug)}"><span class="l">← ${esc(ui.prev)}</span>${esc(prev.name)}</a>` : "<span></span>"
+    }${next ? `<a class="card next" href="${pageUrl(next.slug)}"><span class="l">${esc(ui.next)} →</span>${esc(next.name)}</a>` : "<span></span>"}</div>`;
+
+    root.innerHTML = `${navHtml(["home", "research", "projects", "experience", "contact"], true)}
+      <main class="wrap detail">
+        <a class="back" href="${pageUrl("", "projects")}">${esc(ui.back)}</a>
+        <header class="dhead reveal">
+          <div class="label">PROJECT ${pad(i + 1)} / ${pad(list.length)}</div>
+          <h1>${esc(p.name)}</h1>
+          <p class="lede">${esc(t(p.summary))}</p>
+          ${p.tags && p.tags.length ? `<div class="tags">${p.tags.map((x) => `<span class="tag">${esc(x)}</span>`).join("")}</div>` : ""}
+          ${links ? `<div class="btns">${links}</div>` : ""}
+        </header>
+        ${block(ui.why, why)}
+        ${block(ui.features, feats)}
+        ${block(ui.flow, flow)}
+        ${block(ui.principles, principles)}
+        ${pager}
+        <footer><span>${esc(d.copyright || "")}</span><span>${esc(ui.updated)} ${esc(d.updated)}</span></footer>
+      </main>`;
+    for (const a of root.querySelectorAll(".pill .links a")) a.classList.toggle("on", a.dataset.id === "projects");
+  }
+
   function render() {
     const d = data;
+    {
+      const list = (d.projects || []).filter((p) => ready(p.summary));
+      const i = list.findIndex((p) => p.slug && p.slug === currentSlug());
+      if (i >= 0) return renderProject(d, list, i);
+    }
     const ui = UI[lang];
     const r = d.research || { groups: [] };
     const items = (r.groups || []).flatMap((g) => g.items || []);
@@ -157,8 +225,9 @@
     // ── projects
     const projHtml = `<div class="grid">${projects
       .map(
-        (p) => `<a class="card proj reveal" href="${esc(p.url)}" target="_blank" rel="noopener">
-          <div class="h"><span>${esc(p.name)}</span><span class="arr">↗</span></div>
+        (p, k) => `<a class="card proj reveal" href="${pageUrl(p.slug)}">
+          <div class="num">${String(k + 1).padStart(2, "0")}</div>
+          <div class="h"><span>${esc(p.name)}</span><span class="arr">→</span></div>
           <p>${esc(t(p.summary))}</p>
           ${p.tags && p.tags.length ? `<div class="tags">${p.tags.map((x) => `<span class="tag">${esc(x)}</span>`).join("")}</div>` : ""}
         </a>`
@@ -222,12 +291,7 @@
       .join("");
 
     const navIds = ["home", ...["research", "projects", "experience", "contact"].filter((id) => secs.some((s) => s[0] === id))];
-    const nav = `<nav class="pill" aria-label="${esc(ui.navLabel)}">
-      <div class="links">${navIds.map((id) => `<a href="#${id}" data-id="${id}">${esc(ui[id])}</a>`).join("")}</div>
-      <div class="lang" role="group" aria-label="${esc(ui.langLabel)}">${LANGS.map(
-        (l) => `<button type="button" data-lang="${l}" aria-pressed="${l === lang}"${l === lang ? ' class="on"' : ""}>${l.toUpperCase()}</button>`
-      ).join('<span aria-hidden="true">/</span>')}</div>
-    </nav>`;
+    const nav = navHtml(navIds, false);
 
     root.innerHTML = `${nav}${home}${overview}<main class="wrap">${body}
       <footer><span>${esc(d.copyright || "")}</span><span>${esc(ui.updated)} ${esc(d.updated)}</span></footer></main>`;
@@ -236,6 +300,7 @@
 
   // ── active pill item follows the section under the upper third of the screen
   function markActive() {
+    if (root.querySelector(".detail")) return;
     const links = [...root.querySelectorAll(".pill .links a")];
     let current = "home";
     for (const a of links) {

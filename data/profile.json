@@ -200,40 +200,797 @@
   },
   "projects": [
     {
+      "slug": "oss-lab",
+      "name": "OSS Vulnerability Research Lab",
+      "url": "",
+      "links": [],
+      "tags": [
+        "Python",
+        "FastAPI",
+        "Docker",
+        "tree-sitter",
+        "Semgrep",
+        "React"
+      ],
+      "summary": {
+        "en": "A research pipeline that takes an open-source project from source code to a reproduced, reportable vulnerability.",
+        "ko": "오픈소스 프로젝트를 소스코드부터 재현된 취약점 보고서까지 끌고 가는 연구 파이프라인."
+      },
+      "why": {
+        "en": [
+          "In the AI era, source code review is the first area where vulnerability assessment becomes practical to automate.",
+          "Most AI source-review tools read a sample of files that look important and report what a single function shows. This lab is designed differently: it reads the whole tree, looks deliberately at the classes AI tends to miss, and hands everything it learned to the final review."
+        ],
+        "ko": [
+          "AI 시대에 취약점 점검을 가장 먼저 자동화하기 좋은 영역은 소스코드 진단이다.",
+          "일반적인 AI 소스코드 진단 도구는 중요해 보이는 파일 일부만 읽고, 함수 하나에서 보이는 것만 보고한다. 이 랩은 설계부터 다르다. 프로젝트 전체를 읽고, AI가 놓치기 쉬운 취약점 유형을 따로 진단한 뒤, 앞 단계에서 모은 정보를 모두 넘겨 최종 분석을 한다."
+        ]
+      },
+      "features": [
+        {
+          "title": {
+            "en": "Every file, not a sample",
+            "ko": "파일 전수 읽기"
+          },
+          "text": {
+            "en": "Reads every source file and records structured facts (entry points, untrusted inputs, dangerous calls, guards), so nothing outside the \"core\" is skipped.",
+            "ko": "모든 소스 파일을 읽고 진입점, 외부 입력, 위험 호출, 검증 로직을 구조화된 사실로 기록한다. 핵심처럼 보이지 않는 파일도 빠지지 않는다."
+          }
+        },
+        {
+          "title": {
+            "en": "Weak-spot diagnosis",
+            "ko": "AI 약점 영역 진단"
+          },
+          "text": {
+            "en": "A dedicated stage in the chain targets classes AI review overlooks, such as two paths reaching the same effect with different authority checks.",
+            "ko": "AI가 약한 취약점 유형을 따로 진단하는 단계가 체인에 들어 있다. 예를 들어 같은 결과에 도달하는 두 경로가 서로 다른 권한 검사를 거치는 경우를 찾는다."
+          }
+        },
+        {
+          "title": {
+            "en": "Informed review (2a)",
+            "ko": "정보를 모두 받은 분석 (2a)"
+          },
+          "text": {
+            "en": "The final review receives everything the earlier stages produced: runtime measurements, the full-tree facts, tool results and the weak-spot candidates. It must give every item a verdict.",
+            "ko": "최종 분석 단계는 앞 단계의 결과(런타임 측정, 전수 읽기 결과, 도구 결과, 약점 진단 후보)를 모두 받고, 항목마다 판정을 남긴다."
+          }
+        },
+        {
+          "title": {
+            "en": "Independent cold review (2b)",
+            "ko": "독립 분석 (2b)"
+          },
+          "text": {
+            "en": "A separate pass sees only the target, none of the earlier conclusions, so it can catch what the informed pass talked itself out of.",
+            "ko": "별도 단계가 앞선 결론 없이 대상만 보고 분석한다. 정보를 받은 분석이 스스로 배제한 부분을 다시 잡아낸다."
+          }
+        },
+        {
+          "title": {
+            "en": "Lab first",
+            "ko": "랩 우선"
+          },
+          "text": {
+            "en": "Each target runs in a local Docker lab before the source is read, and each kind of user is measured against each endpoint.",
+            "ko": "소스를 읽기 전에 대상을 로컬 Docker 랩에 띄우고, 사용자 유형별로 각 엔드포인트에 무엇이 허용되는지 측정한다."
+          }
+        },
+        {
+          "title": {
+            "en": "Reproduced before reported",
+            "ko": "재현 후 보고"
+          },
+          "text": {
+            "en": "A candidate becomes a finding only after it reproduces in the lab with a negative control, and the report cites the exact code path.",
+            "ko": "후보는 랩에서 대조군과 함께 재현돼야 취약점이 되고, 보고서에는 정확한 코드 경로가 들어간다."
+          }
+        }
+      ],
+      "flow": {
+        "en": [
+          "Admission: check the target's disclosure route",
+          "Docker lab and runtime probe",
+          "Full-tree read of every file",
+          "Tool scans: static rules, reachability, fix variants",
+          "Weak-spot diagnosis",
+          "Informed review (2a)",
+          "Independent cold review (2b)",
+          "Reproduction in the lab and report"
+        ],
+        "ko": [
+          "대상 선정: 제보 경로 확인",
+          "Docker 랩 구성과 런타임 측정",
+          "모든 파일 전수 읽기",
+          "도구 진단: 정적 규칙, 도달 가능성, 패치 변형",
+          "AI 약점 영역 진단",
+          "정보를 모두 받은 분석 (2a)",
+          "독립 분석 (2b)",
+          "랩 재현과 보고서 작성"
+        ]
+      },
+      "principles": {
+        "en": [
+          "Every PoC runs only inside local Docker; no public targets are scanned.",
+          "Nothing is reported until it has been reproduced."
+        ],
+        "ko": [
+          "모든 PoC는 로컬 Docker 안에서만 실행하고, 공개된 대상은 스캔하지 않는다.",
+          "재현되지 않은 것은 보고하지 않는다."
+        ]
+      }
+    },
+    {
+      "slug": "omtest",
+      "name": "OMtest Agent",
+      "url": "",
+      "links": [],
+      "tags": [
+        "Python",
+        "httpx",
+        "Playwright",
+        "YAML rules"
+      ],
+      "summary": {
+        "en": "An automated web vulnerability assessment agent that collects, checks, verifies and reports with a local dashboard.",
+        "ko": "수집부터 점검, 검증, 보고까지 자동으로 진행하는 웹 취약점 진단 에이전트. 로컬 대시보드로 운영한다."
+      },
+      "why": {
+        "en": [
+          "Web assessment is moving from manual testing toward AI-driven automation. OMtest is a research project built to make that practical: an agent that runs the whole assessment flow while keeping the load on the target low."
+        ],
+        "ko": [
+          "웹 진단은 수동 진단에서 AI를 통한 자동화 진단으로 넘어가고 있다. OMtest는 이를 실제로 쓸 수 있는 수준으로 만들기 위한 연구 프로젝트다. 대상에 주는 부하를 낮게 유지하면서 진단 전체 흐름을 에이전트가 수행한다."
+        ]
+      },
+      "features": [
+        {
+          "title": {
+            "en": "Low-rate collection",
+            "ko": "저부하 수집"
+          },
+          "text": {
+            "en": "Crawls HTTP pages, robots.txt, sitemaps, JavaScript and forms, with optional browser collection through Playwright.",
+            "ko": "HTTP 페이지, robots.txt, 사이트맵, JavaScript, 폼을 수집하고, 필요하면 Playwright로 브라우저 수집까지 한다."
+          }
+        },
+        {
+          "title": {
+            "en": "Rules before AI",
+            "ko": "규칙 먼저, AI는 그다음"
+          },
+          "text": {
+            "en": "Deterministic YAML rules check every response first; the AI layer works on what the rules surfaced.",
+            "ko": "모든 응답을 YAML 규칙으로 먼저 점검하고, AI는 규칙이 찾아낸 신호를 바탕으로 가설을 세운다."
+          }
+        },
+        {
+          "title": {
+            "en": "Assessment levels 1–5",
+            "ko": "진단 단계 1–5"
+          },
+          "text": {
+            "en": "Each level sets how far the agent may go, from passive observation to approved validation.",
+            "ko": "단계마다 에이전트가 할 수 있는 범위가 정해져 있다. 관찰만 하는 단계부터 승인된 검증 단계까지 나뉜다."
+          }
+        },
+        {
+          "title": {
+            "en": "Verification gate",
+            "ko": "검증 게이트"
+          },
+          "text": {
+            "en": "A finding is marked verified only with a reproducible path, a demonstrated impact on a test account or object, and complete evidence.",
+            "ko": "재현 경로, 테스트 계정이나 객체에서 확인한 영향, 완전한 증거가 모두 있어야 검증된 취약점으로 분류한다."
+          }
+        },
+        {
+          "title": {
+            "en": "Redacted evidence and reports",
+            "ko": "마스킹된 증거와 보고서"
+          },
+          "text": {
+            "en": "Cookies, tokens and personal data are masked before anything is stored. Reports come out as Markdown, JSON, HTML and PDF.",
+            "ko": "쿠키, 토큰, 개인정보는 저장 전에 마스킹한다. 보고서는 Markdown, JSON, HTML, PDF로 만든다."
+          }
+        },
+        {
+          "title": {
+            "en": "Local dashboard",
+            "ko": "로컬 대시보드"
+          },
+          "text": {
+            "en": "Runs, findings and evidence are reviewed in a web dashboard bound to the local machine.",
+            "ko": "실행 기록, 발견 항목, 증거를 로컬에서만 열리는 웹 대시보드에서 확인한다."
+          }
+        }
+      ],
+      "flow": {
+        "en": [
+          "Scope check",
+          "Low-rate collection",
+          "Rule-based checks",
+          "Dedupe and scoring",
+          "AI hypotheses",
+          "Validation and PoC",
+          "Verification gate",
+          "Report"
+        ],
+        "ko": [
+          "범위 확인",
+          "저부하 수집",
+          "규칙 기반 점검",
+          "중복 제거와 점수화",
+          "AI 가설 수립",
+          "검증과 PoC",
+          "검증 게이트",
+          "보고서"
+        ]
+      },
+      "principles": {
+        "en": [
+          "No brute force, fuzzing or load testing; the target's availability comes first.",
+          "Secrets and raw response bodies are never written to reports or logs."
+        ],
+        "ko": [
+          "무차별 대입, 퍼징, 부하 테스트는 하지 않는다. 대상의 가용성이 먼저다.",
+          "비밀 값과 응답 원문은 보고서나 로그에 남기지 않는다."
+        ]
+      }
+    },
+    {
+      "slug": "mobile",
+      "name": "Mobile Security Workbench",
+      "url": "https://github.com/GrayOM/mobile_allinone",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/GrayOM/mobile_allinone"
+        }
+      ],
+      "tags": [
+        "Python",
+        "FastAPI",
+        "React",
+        "Frida",
+        "ADB",
+        "mitmproxy"
+      ],
+      "summary": {
+        "en": "An all-in-one mobile app vulnerability assessment workbench, from static analysis to evidence and report.",
+        "ko": "정적 분석부터 증거 수집, 보고서까지 한곳에서 하는 모바일 앱 취약점 진단 워크벤치."
+      },
+      "why": {
+        "en": [
+          "As mobile technology moves on, assessment methods have to move with it. This workbench brings the whole mobile assessment into one place and uses AI where it helps, instead of switching between separate tools for each step."
+        ],
+        "ko": [
+          "기술이 발전하면 진단 방식도 따라 바뀌어야 하고, 그건 스스로 연구해야 하는 영역이다. 이 워크벤치는 단계마다 다른 도구를 오가는 대신 모바일 진단 전체를 한곳에 모으고, 도움이 되는 지점에 AI를 활용한다."
+        ]
+      },
+      "features": [
+        {
+          "title": {
+            "en": "App analysis",
+            "ko": "앱 분석"
+          },
+          "text": {
+            "en": "Upload an APK or IPA for static analysis, with MobSF, APKiD and similar tools wrapped in one interface.",
+            "ko": "APK나 IPA를 올리면 정적 분석을 한다. MobSF, APKiD 같은 도구를 하나의 화면에서 쓴다."
+          }
+        },
+        {
+          "title": {
+            "en": "Checklist profiles",
+            "ko": "점검 기준"
+          },
+          "text": {
+            "en": "Checks items for Korean critical information infrastructure and electronic financial services, alongside OWASP MASTG.",
+            "ko": "주요정보통신기반시설 항목과 전자금융기반시설 항목을 점검하고, OWASP MASTG 기준도 함께 쓴다."
+          }
+        },
+        {
+          "title": {
+            "en": "Dynamic testing",
+            "ko": "동적 진단"
+          },
+          "text": {
+            "en": "Runs live tests through ADB, Frida, objection and drozer, with traffic through mitmproxy, Burp or Fiddler, inside the approved scope.",
+            "ko": "ADB, Frida, objection, drozer로 실시간 진단을 하고, 트래픽은 mitmproxy, Burp, Fiddler로 본다. 승인된 범위 안에서만 동작한다."
+          }
+        },
+        {
+          "title": {
+            "en": "Evidence timeline",
+            "ko": "증거 타임라인"
+          },
+          "text": {
+            "en": "Every action and its output is recorded on one timeline per run.",
+            "ko": "진단 중 수행한 작업과 결과를 실행 단위로 하나의 타임라인에 기록한다."
+          }
+        },
+        {
+          "title": {
+            "en": "Evidence-based findings",
+            "ko": "증거 기반 판정"
+          },
+          "text": {
+            "en": "A finding is confirmed only when the same run produced the required evidence, or a reviewer approves it.",
+            "ko": "같은 실행에서 필요한 증거가 나왔거나 검토자가 승인했을 때만 취약점으로 확정한다."
+          }
+        },
+        {
+          "title": {
+            "en": "Report",
+            "ko": "보고서"
+          },
+          "text": {
+            "en": "Exports the vulnerability report as a DOCX document.",
+            "ko": "취약점 보고서를 DOCX 문서로 내보낸다."
+          }
+        }
+      ],
+      "flow": {
+        "en": [
+          "Upload the app",
+          "Static analysis",
+          "Choose the checklist profile",
+          "Dynamic testing on a device",
+          "Evidence timeline",
+          "Confirm findings",
+          "DOCX report"
+        ],
+        "ko": [
+          "앱 업로드",
+          "정적 분석",
+          "점검 기준 선택",
+          "단말 동적 진단",
+          "증거 타임라인",
+          "취약점 확정",
+          "DOCX 보고서"
+        ]
+      },
+      "principles": {
+        "en": [
+          "Tests stay inside the approved scope.",
+          "A finding needs evidence from the run, not an assumption."
+        ],
+        "ko": [
+          "진단은 승인된 범위 안에서만 한다.",
+          "취약점 판정에는 추정이 아니라 실행에서 나온 증거가 필요하다."
+        ]
+      }
+    },
+    {
+      "slug": "agent-guidance",
+      "name": "Agent Guidance",
+      "url": "https://github.com/GrayOM/Agent_Guidance",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/GrayOM/Agent_Guidance"
+        }
+      ],
+      "tags": [
+        "Python",
+        "Pydantic",
+        "CLI"
+      ],
+      "summary": {
+        "en": "A CLI that works out which skills, plugins and MCP servers to install for Claude Code and Codex, from the work you actually do.",
+        "ko": "하는 일을 바탕으로 Claude Code와 Codex에 설치할 스킬, 플러그인, MCP 서버를 정해 주는 CLI."
+      },
+      "why": {
+        "en": [
+          "Setting up plugins, skills and MCP servers was more painful than it should be. Most users would never find the right ones on their own, so this tool asks about their work and does the finding and setup for them."
+        ],
+        "ko": [
+          "플러그인, 스킬, MCP 서버를 설정하는 과정이 너무 불편했다. 일반 사용자는 자기에게 맞는 것을 스스로 찾아내기 어렵다. 그래서 하는 일을 물어보고, 찾는 일과 설치까지 대신해 주는 도구를 만들었다."
+        ]
+      },
+      "features": [
+        {
+          "title": {
+            "en": "Agent detection",
+            "ko": "에이전트 감지"
+          },
+          "text": {
+            "en": "Finds which coding agents are installed and where their configuration lives.",
+            "ko": "설치된 코딩 에이전트와 설정 파일 위치를 찾는다."
+          }
+        },
+        {
+          "title": {
+            "en": "Work interview",
+            "ko": "업무 인터뷰"
+          },
+          "text": {
+            "en": "Asks about your field and tasks, then infers the capabilities you need.",
+            "ko": "분야와 하는 일을 묻고, 필요한 기능을 추론한다."
+          }
+        },
+        {
+          "title": {
+            "en": "Explained recommendations",
+            "ko": "이유가 붙은 추천"
+          },
+          "text": {
+            "en": "Recommends from a built-in registry and GitHub, with the reason for each pick, what was excluded and what is still missing.",
+            "ko": "내장 목록과 GitHub에서 추천하고, 고른 이유, 제외한 것, 아직 채우지 못한 부분을 함께 보여 준다."
+          }
+        },
+        {
+          "title": {
+            "en": "One approval",
+            "ko": "한 번의 승인"
+          },
+          "text": {
+            "en": "Shows the full plan with a security review and asks once before changing anything.",
+            "ko": "보안 검토가 포함된 전체 계획을 보여 주고, 무엇이든 바꾸기 전에 한 번 승인을 받는다."
+          }
+        },
+        {
+          "title": {
+            "en": "Safe install",
+            "ko": "안전한 설치"
+          },
+          "text": {
+            "en": "Backs up configs, merges them atomically, installs pinned versions, runs health checks and rolls back on failure.",
+            "ko": "설정을 백업하고 원자적으로 병합한 뒤 고정된 버전을 설치한다. 상태 점검에 실패하면 되돌린다."
+          }
+        }
+      ],
+      "flow": {
+        "en": [
+          "Detect agents",
+          "Interview",
+          "Infer needed capabilities",
+          "Recommend with reasons",
+          "Plan and security review",
+          "Approve once",
+          "Install, check, roll back on failure"
+        ],
+        "ko": [
+          "에이전트 감지",
+          "인터뷰",
+          "필요 기능 추론",
+          "이유와 함께 추천",
+          "계획과 보안 검토",
+          "한 번 승인",
+          "설치, 점검, 실패 시 복구"
+        ]
+      },
+      "principles": {
+        "en": [
+          "Nothing is installed without one explicit approval.",
+          "Every change can be rolled back."
+        ],
+        "ko": [
+          "명시적 승인 없이는 아무것도 설치하지 않는다.",
+          "모든 변경은 되돌릴 수 있다."
+        ]
+      }
+    },
+    {
+      "slug": "alr",
+      "name": "Availability-Low Reconnaissance",
+      "url": "https://github.com/GrayOM/Availability-Low-Reconnaissance",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/GrayOM/Availability-Low-Reconnaissance"
+        }
+      ],
+      "tags": [
+        "Python",
+        "subfinder",
+        "httpx",
+        "OSINT"
+      ],
+      "summary": {
+        "en": "Passive-first OSINT that maps a domain's public exposure with almost no load on the target.",
+        "ko": "대상에 거의 부하를 주지 않고 도메인의 외부 노출 범위를 파악하는 패시브 우선 OSINT 도구."
+      },
+      "why": {
+        "en": [
+          "Many clients worry first about availability: any reconnaissance that might slow their service is a problem. ALR is built for that case. It collects only what can be learned with minimal traffic, which makes it the most OSINT that can be done when availability is the main concern."
+        ],
+        "ko": [
+          "가용성을 가장 걱정하는 고객사가 많다. 서비스에 조금이라도 부담을 주는 정찰은 문제가 된다. ALR은 그런 상황을 위해 만들었다. 최소한의 트래픽으로 알 수 있는 정보만 모으기 때문에, 가용성이 최우선인 고객사 입장에서 할 수 있는 최대한의 OSINT다."
+        ]
+      },
+      "features": [
+        {
+          "title": {
+            "en": "Subdomain discovery",
+            "ko": "서브도메인 수집"
+          },
+          "text": {
+            "en": "Finds subdomains through subfinder and Certificate Transparency logs.",
+            "ko": "subfinder와 인증서 투명성(CT) 로그로 서브도메인을 찾는다."
+          }
+        },
+        {
+          "title": {
+            "en": "Ownership data",
+            "ko": "소유 정보 조회"
+          },
+          "text": {
+            "en": "Looks up RDAP, WHOIS and ASN information.",
+            "ko": "RDAP, WHOIS, ASN 정보를 조회한다."
+          }
+        },
+        {
+          "title": {
+            "en": "Low-intensity probing",
+            "ko": "저강도 확인"
+          },
+          "text": {
+            "en": "Checks which hosts answer with a light httpx probe. DNS resolution and port checks run only in an optional active mode.",
+            "ko": "가벼운 httpx 요청으로 응답하는 호스트를 확인한다. DNS 확인과 포트 확인은 선택형 액티브 모드에서만 한다."
+          }
+        },
+        {
+          "title": {
+            "en": "Surface analysis",
+            "ko": "노출 면 분석"
+          },
+          "text": {
+            "en": "Groups what was found into an exposure picture of the target.",
+            "ko": "찾은 정보를 묶어 대상의 외부 노출 현황으로 정리한다."
+          }
+        },
+        {
+          "title": {
+            "en": "Report",
+            "ko": "보고서"
+          },
+          "text": {
+            "en": "Writes JSON, Markdown and PDF reports, with an optional AI summary.",
+            "ko": "JSON, Markdown, PDF 보고서를 만들고, 필요하면 AI 요약을 붙인다."
+          }
+        }
+      ],
+      "flow": {
+        "en": [
+          "Domain or IP input",
+          "Passive collection",
+          "Ownership lookup",
+          "Low-intensity probing",
+          "Surface analysis",
+          "Report"
+        ],
+        "ko": [
+          "도메인 또는 IP 입력",
+          "패시브 수집",
+          "소유 정보 조회",
+          "저강도 확인",
+          "노출 면 분석",
+          "보고서"
+        ]
+      },
+      "principles": {
+        "en": [
+          "No attacks and no exploitation.",
+          "Traffic to the target is kept to the minimum."
+        ],
+        "ko": [
+          "공격이나 익스플로잇은 하지 않는다.",
+          "대상으로 가는 트래픽은 최소한으로 유지한다."
+        ]
+      }
+    },
+    {
+      "slug": "hack-guidance",
       "name": "Hack Guidance",
       "url": "https://grayom.github.io/Hack_guidance",
-      "summary": {
-        "en": "Web hacking wargame that runs in the browser. Each challenge opens simulated services to investigate, and flags are checked on the server.",
-        "ko": "브라우저에서 바로 푸는 웹 해킹 워게임. 문제마다 가상 서비스를 조사해 플래그를 찾고, 플래그는 서버에서 검증한다."
-      },
+      "links": [
+        {
+          "label": {
+            "en": "Play",
+            "ko": "플레이"
+          },
+          "url": "https://grayom.github.io/Hack_guidance"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/GrayOM/Hack_guidance"
+        }
+      ],
       "tags": [
         "React",
+        "TypeScript",
         "Supabase",
         "GitHub Pages"
-      ]
+      ],
+      "summary": {
+        "en": "A browser-based web hacking wargame for beginners, built like a game so studying does not get dull.",
+        "ko": "입문자를 위한 브라우저 웹 해킹 워게임. 공부가 지루해지지 않도록 게임처럼 만들었다."
+      },
+      "why": {
+        "en": [
+          "Many people want to become hackers but do not know how to start studying, and plain study material gets boring fast. Hack Guidance wraps the learning in a game concept: each challenge is a case to investigate."
+        ],
+        "ko": [
+          "해커가 되고 싶어도 어떻게 공부해야 할지 모르는 사람이 많고, 공부만 하다 보면 금방 지루해진다. Hack Guidance는 학습을 게임 컨셉으로 묶었다. 문제마다 조사해야 할 사건이 주어진다."
+        ]
+      },
+      "features": [
+        {
+          "title": {
+            "en": "50 challenges in 5 levels",
+            "ko": "5단계 50문제"
+          },
+          "text": {
+            "en": "Challenges are grouped into five levels, from first steps to harder cases.",
+            "ko": "문제는 입문부터 심화까지 다섯 단계로 나뉜다."
+          }
+        },
+        {
+          "title": {
+            "en": "Case-based play",
+            "ko": "사건 기반 진행"
+          },
+          "text": {
+            "en": "Each challenge opens a case file and simulated services in an OS-like workspace, with analysis tools beside them.",
+            "ko": "문제마다 사건 파일과 가상 서비스가 OS처럼 생긴 작업 공간에 열리고, 분석 도구를 함께 쓴다."
+          }
+        },
+        {
+          "title": {
+            "en": "Hints",
+            "ko": "힌트"
+          },
+          "text": {
+            "en": "Hints guide the next step without giving away the answer.",
+            "ko": "정답을 알려 주지 않고 다음 단계를 안내한다."
+          }
+        },
+        {
+          "title": {
+            "en": "Server-side flag check",
+            "ko": "서버 검증"
+          },
+          "text": {
+            "en": "Flags are verified on the server, not in the browser.",
+            "ko": "플래그는 브라우저가 아니라 서버에서 검증한다."
+          }
+        },
+        {
+          "title": {
+            "en": "Progress, ranking and certificate",
+            "ko": "진행도, 랭킹, 수료증"
+          },
+          "text": {
+            "en": "Progress and rankings are tracked per user, and completing the course issues a verifiable certificate.",
+            "ko": "사용자별 진행도와 랭킹을 기록하고, 과정을 마치면 확인 가능한 수료증을 발급한다."
+          }
+        }
+      ],
+      "flow": {
+        "en": [
+          "Pick a level",
+          "Read the case file",
+          "Investigate the simulated services",
+          "Find the flag",
+          "Server verifies the flag",
+          "Progress and ranking update"
+        ],
+        "ko": [
+          "단계 선택",
+          "사건 파일 확인",
+          "가상 서비스 조사",
+          "플래그 찾기",
+          "서버에서 플래그 검증",
+          "진행도와 랭킹 반영"
+        ]
+      },
+      "principles": {
+        "en": [
+          "Everything runs on simulated services; nothing connects to real systems."
+        ],
+        "ko": [
+          "모든 문제는 가상 서비스에서 진행하며, 실제 시스템에는 연결하지 않는다."
+        ]
+      }
     },
     {
+      "slug": "fiddler",
       "name": "Fiddler Custom Script",
       "url": "https://github.com/GrayOM/Fiddler_Custom_Script",
-      "summary": {
-        "en": "FiddlerScript rules that flag patterns I check by hand during manual testing. I use it on real engagements.",
-        "ko": "수동 진단 중 직접 확인할 패턴을 강조해 주는 FiddlerScript 규칙 모음. 실무 진단에서 쓰고 있다."
-      },
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/GrayOM/Fiddler_Custom_Script"
+        }
+      ],
       "tags": [
-        "FiddlerScript"
-      ]
-    },
-    {
-      "name": "AI Source Vulnerability Analyzer",
-      "url": "https://github.com/GrayOM/AI-Source-Vulnerability-Analyzer-ZIP-",
+        "FiddlerScript",
+        "Fiddler Classic"
+      ],
       "summary": {
-        "en": "Upload a frontend source ZIP, get vulnerability candidates and a console PoC to verify each one.",
-        "ko": "프런트엔드 소스 ZIP을 올리면 취약점 후보와, 각 후보를 검증할 콘솔 PoC를 만들어 준다."
+        "en": "FiddlerScript rules that filter traffic for words worth a second look during manual web testing.",
+        "ko": "수동 웹 진단 중 다시 봐야 할 단어를 트래픽에서 걸러 주는 FiddlerScript 규칙."
       },
-      "tags": [
-        "FastAPI",
-        "Python"
-      ]
+      "why": {
+        "en": [
+          "During manual testing, the useful clues are often left by developers: a commented-out endpoint, test code, a debug message. These rules filter traffic for those words so such leaks stand out instead of scrolling past."
+        ],
+        "ko": [
+          "수동 진단에서 쓸모 있는 단서는 개발자가 남겨 둔 것인 경우가 많다. 주석 처리된 엔드포인트, 테스트 코드, 디버그 메시지 같은 것들이다. 이 규칙은 트래픽에서 그런 단어를 걸러, 정보 노출 가능성이 있는 흔적이 묻히지 않고 눈에 띄게 한다."
+        ]
+      },
+      "features": [
+        {
+          "title": {
+            "en": "Keyword filters",
+            "ko": "키워드 필터"
+          },
+          "text": {
+            "en": "Flags sessions containing words such as dev or test endpoints, sensitive data, error messages and admin paths.",
+            "ko": "개발·테스트 엔드포인트, 민감 정보, 오류 메시지, 관리자 경로 같은 단어가 들어간 세션을 표시한다."
+          }
+        },
+        {
+          "title": {
+            "en": "Hidden-leak spotting",
+            "ko": "숨은 정보 노출 탐지"
+          },
+          "text": {
+            "en": "Surfaces comments and test code left in responses.",
+            "ko": "응답에 남아 있는 주석과 테스트 코드를 찾아낸다."
+          }
+        },
+        {
+          "title": {
+            "en": "Colour and comments",
+            "ko": "색상과 메모"
+          },
+          "text": {
+            "en": "Marks matching sessions with colours and notes so they are easy to find again.",
+            "ko": "해당 세션에 색상과 메모를 달아 다시 찾기 쉽게 한다."
+          }
+        },
+        {
+          "title": {
+            "en": "Pattern checks",
+            "ko": "패턴 점검"
+          },
+          "text": {
+            "en": "Highlights JWTs, weak security headers and injection-shaped parameters.",
+            "ko": "JWT, 약한 보안 헤더, 인젝션 형태의 파라미터를 강조한다."
+          }
+        },
+        {
+          "title": {
+            "en": "Recon & Intel menu",
+            "ko": "Recon & Intel 메뉴"
+          },
+          "text": {
+            "en": "A second script analyses JS, HTML and JSON for clue paths, token hints and CORS or auth clues.",
+            "ko": "두 번째 스크립트가 JS, HTML, JSON을 분석해 단서가 되는 경로, 토큰, CORS·인증 관련 흔적을 찾는다."
+          }
+        }
+      ],
+      "flow": {
+        "en": [
+          "Enable rules from the menu",
+          "Browse the target as usual",
+          "Matching sessions are coloured and noted",
+          "Review the flagged sessions"
+        ],
+        "ko": [
+          "메뉴에서 규칙 켜기",
+          "평소처럼 대상 탐색",
+          "조건에 맞는 세션에 색상과 메모 표시",
+          "표시된 세션 검토"
+        ]
+      },
+      "principles": {
+        "en": [],
+        "ko": []
+      }
     }
   ],
   "experience": [
@@ -310,8 +1067,8 @@
       "ko": "오픈소스에서 직접 찾아 로컬 Docker 랩에서 재현한 뒤, 벤더에 제보한 취약점."
     },
     "projects": {
-      "en": "Tools and a wargame I built and still use.",
-      "ko": "직접 만들어 실제로 쓰고 있는 도구와 워게임."
+      "en": "What each project is for and how it works. Select one for details.",
+      "ko": "프로젝트마다 왜 만들었고 어떻게 동작하는지 정리했다. 눌러서 자세히 볼 수 있다."
     },
     "experience": {
       "en": "Current position.",
