@@ -106,19 +106,6 @@
     })
     .then(render)
     .catch(() => {
-      const sections = [
-      ["about", "About", about],
-      ["research", "Research", research],
-      ["projects", "Projects", projects],
-      ["experience", "Experience", exp],
-      ["credentials", awardsTitle, awards],
-      ["contact", "Contact", contact],
-    ].filter(([, , html]) => html);
-    const nav = sections
-      .filter(([id]) => id !== "about")
-      .map(([id, title]) => `<a href="#${id}">${esc(title.toLowerCase())}</a>`)
-      .join("");
-
-    root.innerHTML = `<p>Could not load profile data. Check that <code>data/profile.json</code> exists and is valid JSON.</p>`;
+      root.innerHTML = `<p>Could not load profile data. Check that <code>data/profile.json</code> exists and is valid JSON.</p>`;
     });
 })();

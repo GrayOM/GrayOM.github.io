@@ -25,7 +25,7 @@
           {
             "id": "Credited",
             "target": "ubicloud/ubicloud",
-            "summary": "Object names from other projects disclosed through UBID resolution",
+            "summary": "Two information disclosure issues: object names from other projects exposed through UBID resolution",
             "severity": "",
             "cvss": "",
             "url": "https://github.com/ubicloud/ubicloud/pull/6399",
@@ -53,7 +53,7 @@
           {
             "id": "GHSA-8m28-9wcj-v8ww",
             "target": "NangoHQ/nango",
-            "summary": "SQL injection in the task orchestrator via Postgres NOTIFY",
+            "summary": "Unauthenticated SQL injection in the task orchestrator via Postgres NOTIFY",
             "severity": "High",
             "cvss": "CVSS 4.0 7.7",
             "url": "https://github.com/NangoHQ/nango/security/advisories/GHSA-8m28-9wcj-v8ww",
