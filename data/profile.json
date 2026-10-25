@@ -3,7 +3,7 @@
   "handle": "GrayOM",
   "tagline": "Web & mobile penetration tester. I find broken access control in open source.",
   "about": [
-    "I work on a penetration testing team in Seoul, testing web and mobile services for finance and public-sector clients.",
+    "I work on a penetration testing team in Seoul, testing web and mobile services.",
     "Outside work I hunt for vulnerabilities in open-source software. I run every target in a local Docker lab and only report what I can reproduce.",
     "Most of what I find is authorization logic: a check that exists, but looks at the wrong value."
   ],
@@ -18,14 +18,16 @@
             "target": "frain-dev/convoy",
             "summary": "Cross-project IDOR exposing another tenant's message broker password in plaintext",
             "severity": "High",
+            "cvss": "CVSS 4.0 7.1",
             "url": "https://github.com/frain-dev/convoy/security/advisories/GHSA-p5vg-v7mj-f6q4",
             "writeup": ""
           },
           {
             "id": "Credited",
             "target": "ubicloud/ubicloud",
-            "summary": "Information disclosure across projects",
-            "severity": "Low",
+            "summary": "Object names from other projects disclosed through UBID resolution",
+            "severity": "",
+            "cvss": "",
             "url": "https://github.com/ubicloud/ubicloud/pull/6399",
             "writeup": ""
           }
@@ -39,6 +41,7 @@
             "target": "Swetrix/swetrix",
             "summary": "Unauthenticated read SSRF through SEO tool actions hidden behind a login redirect",
             "severity": "High",
+            "cvss": "CVSS 3.1 8.6",
             "url": "https://github.com/Swetrix/swetrix/security/advisories/GHSA-fcm9-fvcm-3p55",
             "writeup": ""
           }
@@ -50,42 +53,53 @@
           {
             "id": "GHSA-8m28-9wcj-v8ww",
             "target": "NangoHQ/nango",
-            "summary": "SQL injection",
+            "summary": "SQL injection in the task orchestrator via Postgres NOTIFY",
             "severity": "High",
+            "cvss": "CVSS 4.0 7.7",
             "url": "https://github.com/NangoHQ/nango/security/advisories/GHSA-8m28-9wcj-v8ww",
             "writeup": ""
           },
           {
             "id": "Credited",
             "target": "strangerstudios/paid-memberships-pro",
-            "summary": "Member file uploads exposed to unauthorized users",
-            "severity": "Medium",
+            "summary": "Security fix for user-field file uploads, credited in the 3.8.8 release notes",
+            "severity": "",
+            "cvss": "",
             "url": "https://github.com/strangerstudios/paid-memberships-pro/releases/tag/3.8.8",
             "writeup": ""
           }
         ]
       }
     ],
-    "pending_note": "6 more findings are confirmed by vendors and waiting for publication."
+    "pending_note": "6 more findings are confirmed by vendors and pending publication."
   },
   "projects": [
     {
       "name": "Hack Guidance",
-      "url": "https://grayom.github.io/Hack_guidance/",
-      "summary": "[TODO: one-line description] Browser-based wargame for practicing web security.",
-      "tags": ["React", "Supabase"]
+      "url": "https://grayom.github.io/Hack_guidance",
+      "summary": "Web hacking wargame that runs in the browser. Each challenge opens simulated services to investigate, and flags are checked on the server.",
+      "tags": [
+        "React",
+        "Supabase",
+        "GitHub Pages"
+      ]
     },
     {
       "name": "Fiddler Custom Script",
       "url": "https://github.com/GrayOM/Fiddler_Custom_Script",
       "summary": "FiddlerScript rules that flag patterns I check by hand during manual testing. I use it on real engagements.",
-      "tags": ["FiddlerScript"]
+      "tags": [
+        "FiddlerScript"
+      ]
     },
     {
       "name": "AI Source Vulnerability Analyzer",
       "url": "https://github.com/GrayOM/AI-Source-Vulnerability-Analyzer-ZIP-",
       "summary": "Upload a frontend source ZIP, get vulnerability candidates and a console PoC to verify each one.",
-      "tags": ["FastAPI", "Python"]
+      "tags": [
+        "FastAPI",
+        "Python"
+      ]
     }
   ],
   "experience": [
@@ -96,24 +110,37 @@
     }
   ],
   "experience_detail": {
-    "label": "Full career description (Notion, on request)",
+    "label": "Detailed career history available on request.",
     "url": ""
   },
-  "awards": [
-    { "title": "[TODO: award or CTF result]", "detail": "", "year": "" }
-  ],
+  "awards": [],
   "certs": [
-    { "title": "Network Administrator Level 2", "year": "2019" },
-    { "title": "Linux Master Level 2", "year": "2018" }
+    {
+      "title": "Network Administrator Level 2",
+      "year": "2019"
+    },
+    {
+      "title": "Linux Master Level 2",
+      "year": "2018"
+    }
   ],
   "education": [
-    { "title": "B.S. Software Convergence, Hallym University", "year": "2025" }
+    {
+      "title": "B.S. Software Convergence, Hallym University",
+      "year": "2025"
+    }
   ],
   "contact": {
     "email": "tmdals7205@gmail.com",
     "links": [
-      { "label": "GitHub", "url": "https://github.com/GrayOM" },
-      { "label": "Blog", "url": "https://grayom.tistory.com" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/GrayOM"
+      },
+      {
+        "label": "Blog",
+        "url": "https://grayom.tistory.com"
+      }
     ]
   },
   "updated": "2026-10"

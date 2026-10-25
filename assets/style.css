@@ -94,7 +94,7 @@ ul.plain .yr { font: 0.82rem var(--mono); color: var(--muted); white-space: nowr
 .exp { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; }
 .exp .period { font: 0.85rem var(--mono); color: var(--muted); }
 
-.todo { color: var(--mid); }
+.sub { margin: 0 0 8px; font: 600 0.95rem var(--sans); }
 
 footer { margin-top: 72px; font: 0.78rem var(--mono); color: var(--muted); }
 
