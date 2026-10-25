@@ -46,7 +46,17 @@
             "severity": "High",
             "cvss": "CVSS 4.0 7.1",
             "url": "https://github.com/frain-dev/convoy/security/advisories/GHSA-p5vg-v7mj-f6q4",
-            "writeup": ""
+            "writeup": "",
+            "featured": {
+              "vector": {
+                "en": "Cross-project IDOR",
+                "ko": "프로젝트 간 IDOR"
+              },
+              "impact": {
+                "en": "Another tenant's message broker password returned in plaintext",
+                "ko": "다른 테넌트의 메시지 브로커 비밀번호를 평문으로 획득"
+              }
+            }
           },
           {
             "id": "Credited",
@@ -78,7 +88,17 @@
             "severity": "High",
             "cvss": "CVSS 3.1 8.6",
             "url": "https://github.com/Swetrix/swetrix/security/advisories/GHSA-fcm9-fvcm-3p55",
-            "writeup": ""
+            "writeup": "",
+            "featured": {
+              "vector": {
+                "en": "SEO tool actions callable without login; the redirect only hid the page",
+                "ko": "로그인 리다이렉트만 걸린 SEO 도구 액션을 비인증으로 호출"
+              },
+              "impact": {
+                "en": "Server fetches attacker-chosen URLs and returns the response",
+                "ko": "서버가 공격자가 지정한 URL을 요청하고 응답을 돌려줌"
+              }
+            }
           }
         ]
       },
@@ -98,7 +118,17 @@
             "severity": "High",
             "cvss": "CVSS 4.0 7.7",
             "url": "https://github.com/NangoHQ/nango/security/advisories/GHSA-8m28-9wcj-v8ww",
-            "writeup": ""
+            "writeup": "",
+            "featured": {
+              "vector": {
+                "en": "Unauthenticated input reaching a Postgres NOTIFY statement in the task orchestrator",
+                "ko": "task orchestrator의 Postgres NOTIFY 구문에 비인증 입력이 그대로 들어감"
+              },
+              "impact": {
+                "en": "SQL injection against the orchestrator database",
+                "ko": "orchestrator 데이터베이스에 대한 SQL 인젝션"
+              }
+            }
           },
           {
             "id": "Credited",
@@ -118,7 +148,8 @@
     "pending_note": {
       "en": "6 more findings are confirmed by vendors and pending publication.",
       "ko": "벤더 확인 후 공개 대기 중인 건이 6건 더 있다."
-    }
+    },
+    "pending": 6
   },
   "projects": [
     {
@@ -212,16 +243,41 @@
     "links": [
       {
         "label": "GitHub",
-        "url": "https://github.com/GrayOM"
+        "url": "https://github.com/GrayOM",
+        "icon": "github"
       },
       {
         "label": {
           "en": "Blog",
           "ko": "블로그"
         },
-        "url": "https://grayom.tistory.com"
+        "url": "https://grayom.tistory.com",
+        "icon": "blog"
       }
     ]
   },
-  "updated": "2026-10"
+  "updated": "2026-10",
+  "sections": {
+    "research": {
+      "en": "Open-source vulnerabilities I found, reproduced in a local Docker lab, and reported to vendors.",
+      "ko": "오픈소스에서 찾아 로컬 Docker 랩에서 재현하고 벤더에 제보한 취약점."
+    },
+    "projects": {
+      "en": "Tools and a wargame I built and still use.",
+      "ko": "직접 만들어 지금도 쓰는 도구와 워게임."
+    },
+    "experience": {
+      "en": "Current position.",
+      "ko": "현재 소속."
+    },
+    "credentials": {
+      "en": "",
+      "ko": ""
+    },
+    "contact": {
+      "en": "Email is the fastest way to reach me.",
+      "ko": "연락은 이메일이 가장 빠르다."
+    }
+  },
+  "copyright": "© 2026 GrayOM · Seoul"
 }
