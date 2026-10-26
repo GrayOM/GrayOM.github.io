@@ -74,6 +74,13 @@
             "url": "https://www.vulncheck.com/advisories/chatwoot-before-4.17.0-cross-account-authorization-bypass-via-source-id",
             "refs": [
               {
+                "label": {
+                  "en": "CVE record",
+                  "ko": "CVE 레코드"
+                },
+                "url": "https://www.cve.org/CVERecord?id=CVE-2026-115725"
+              },
+              {
                 "label": "GHSA-8r78-9655-cv92",
                 "url": "https://github.com/advisories/GHSA-8r78-9655-cv92"
               },

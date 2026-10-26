@@ -206,7 +206,7 @@
             (f) => `<div class="row">
               <div class="id">${ext(f.url, `${esc(f.id === "Credited" ? ui.credited : f.id)} ↗`)}</div>
               <div><span class="repo">${esc(f.target)}</span> <span class="what">· ${esc(t(f.summary))}</span>${
-                (f.refs || []).map((x) => ` ${ext(x.url, `${esc(x.label)} ↗`)}`).join("")}${f.writeup ? ` ${ext(f.writeup, esc(ui.writeup))}` : ""
+                (f.refs || []).map((x) => ` ${ext(x.url, `${esc(t(x.label))} ↗`)}`).join("")}${f.writeup ? ` ${ext(f.writeup, esc(ui.writeup))}` : ""
               }</div>
               ${badges(f)}
             </div>`
