@@ -12,7 +12,8 @@
       short: { awards: "Awards", certs: "Certs", education: "Education" }, join: " & ",
       featured: "Featured", all: "All findings", target: "TARGET", vector: "VECTOR", impact: "IMPACT",
       credited: "Credited", writeup: "write-up", updated: "Last updated", scroll: "scroll ↓",
-      stats: { cve: "CVEs", other: "GHSA & credits", pending: "Pending disclosure", projects: "Projects" },
+      stats: { cve: "CVEs", credited: "Credited findings", bounty: "Bug bounties", pending: "Pending disclosure" },
+      bounties: "Bug Bounty",
       bounty: "Bounty",
       pending: (n, b) => `+ <b>${n}</b> more confirmed by vendors, pending publication${b ? ` (${b} of them rewarded)` : ""}.`,
       back: "← All projects", why: "Why I built it", features: "Features", flow: "How it works", principles: "Principles",
@@ -26,7 +27,8 @@
       short: { awards: "수상", certs: "자격", education: "학력" }, join: "·",
       featured: "대표 사례", all: "전체 목록", target: "TARGET", vector: "VECTOR", impact: "IMPACT",
       credited: "크레딧", writeup: "분석 글", updated: "최종 수정", scroll: "스크롤 ↓",
-      stats: { cve: "CVE", other: "GHSA·크레딧", pending: "공개 대기", projects: "프로젝트" },
+      stats: { cve: "CVE", credited: "크레딧", bounty: "버그바운티", pending: "공개 대기" },
+      bounties: "버그바운티",
       bounty: "바운티",
       pending: (n, b) => `+ 벤더 확인을 마치고 공개를 기다리는 건이 <b>${n}</b>건 더 있다${b ? ` (그중 바운티 ${b}건)` : ""}.`,
       back: "← 프로젝트 목록", why: "만든 이유", features: "주요 기능", flow: "동작 흐름", principles: "원칙",
@@ -172,9 +174,9 @@
     const cves = items.filter((f) => /^CVE-/.test(f.id)).length;
     const stats = [
       [cves, ui.stats.cve, true],
-      [items.length - cves, ui.stats.other],
+      [items.length, ui.stats.credited],
+      [(d.bounties || []).length + (r.pending_rewarded || 0), ui.stats.bounty],
       [r.pending || 0, ui.stats.pending],
-      [projects.length, ui.stats.projects],
     ];
     const overview = `<div class="wrap" id="overview">
       <div class="stats reveal">${stats
@@ -199,17 +201,19 @@
           )
           .join("")}</div>`
       : "";
-    const table = `<div class="sub reveal">${esc(ui.all)}</div><div class="groups">${(r.groups || [])
-      .map(
-        (g) => `<div class="group reveal"><h3>${esc(t(g.title))}</h3>${(g.items || [])
-          .map(
-            (f) => `<div class="row">
+    const row = (f) => `<div class="row">
               <div class="id">${ext(f.url, `${esc(f.id === "Credited" ? ui.credited : f.id)} ↗`)}</div>
               <div><span class="repo">${esc(f.target)}</span> <span class="what">· ${esc(t(f.summary))}</span>${
                 (f.refs || []).map((x) => ` ${ext(x.url, `${esc(t(x.label))} ↗`)}`).join("")}${f.writeup ? ` ${ext(f.writeup, esc(ui.writeup))}` : ""
               }</div>
               ${badges(f)}
-            </div>`
+            </div>`;
+    const bountyHtml = (d.bounties || []).length ? `<div class="group reveal">${d.bounties.map(row).join("")}</div>` : "";
+    const table = `<div class="sub reveal">${esc(ui.all)}</div><div class="groups">${(r.groups || [])
+      .map(
+        (g) => `<div class="group reveal"><h3>${esc(t(g.title))}</h3>${(g.items || [])
+          .map(
+            row
           )
           .join("")}</div>`
       )
@@ -271,6 +275,7 @@
     // Numbered sections; an empty one is skipped and the numbering closes up.
     const secs = [
       ["research", ui.research, featHtml + table, items.length],
+      ["bounties", ui.bounties, bountyHtml, (d.bounties || []).length],
       ["projects", ui.projects, projHtml, projects.length],
       ["experience", ui.experience, expHtml, (d.experience || []).length],
       ["credentials", credTitle, credHtml, blocks.length],
