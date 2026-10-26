@@ -63,6 +63,28 @@
             "writeup": ""
           },
           {
+            "id": "CVE-2026-115725",
+            "target": "chatwoot/chatwoot",
+            "summary": {
+              "en": "Cross-account authorization bypass: an agent bot supplying another account's contact inbox source_id can create or retrieve conversations and post messages to that account's contacts",
+              "ko": "계정 간 인가 우회. 에이전트 봇이 다른 계정의 contact inbox source_id를 넣어 그 계정 연락처의 대화를 생성·조회하고 메시지를 보낼 수 있음"
+            },
+            "severity": "Low",
+            "cvss": "CVSS 4.0 2.3",
+            "url": "https://www.vulncheck.com/advisories/chatwoot-before-4.17.0-cross-account-authorization-bypass-via-source-id",
+            "refs": [
+              {
+                "label": "GHSA-8r78-9655-cv92",
+                "url": "https://github.com/advisories/GHSA-8r78-9655-cv92"
+              },
+              {
+                "label": "#15521",
+                "url": "https://github.com/chatwoot/chatwoot/pull/15521"
+              }
+            ],
+            "writeup": ""
+          },
+          {
             "id": "PR #6399",
             "target": "ubicloud/ubicloud",
             "summary": {

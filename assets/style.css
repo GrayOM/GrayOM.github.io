@@ -144,6 +144,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .badge { font: 500 0.68rem/1 var(--mono); padding: 5px 7px; border-radius: 6px; border: 1px solid var(--line-2); color: var(--fg-2); white-space: nowrap; }
 .badge.high { color: var(--high); border-color: rgba(242, 132, 107, 0.4); background: rgba(242, 132, 107, 0.07); }
 .badge.medium, .badge.moderate { color: var(--mid); border-color: rgba(230, 185, 104, 0.4); }
+.badge.low { color: #8aa0b4; border-color: rgba(138, 160, 180, 0.4); }
 .badge.bounty { color: var(--accent); border-color: rgba(52, 211, 153, 0.4); background: var(--accent-dim); }
 
 /* grouped table */
@@ -272,3 +273,6 @@ footer { margin: 120px 0 0; padding: 28px 0 40px; border-top: 1px solid var(--li
   .pill .lang { padding: 0 3px 0 6px; font-size: 0.7rem; }
   .pill .lang button { padding: 4px 2px; }
 }
+
+/* reference links (GHSA ids, PR numbers) never split across lines */
+.row a { white-space: nowrap; }
