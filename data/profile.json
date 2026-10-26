@@ -47,7 +47,8 @@
               "impact": {
                 "en": "Another tenant's message broker password returned in plaintext",
                 "ko": "다른 테넌트의 메시지 브로커 비밀번호를 평문으로 조회"
-              }
+              },
+              "order": 1
             }
           },
           {
@@ -89,7 +90,18 @@
                 "url": "https://github.com/chatwoot/chatwoot/pull/15521"
               }
             ],
-            "writeup": ""
+            "writeup": "",
+            "featured": {
+              "vector": {
+                "en": "Agent bot passes another account's contact inbox source_id to the conversations create endpoint",
+                "ko": "에이전트 봇이 대화 생성 API에 다른 계정의 contact inbox source_id를 전달"
+              },
+              "impact": {
+                "en": "Creates or retrieves conversations with another account's contacts and posts messages to them",
+                "ko": "다른 계정 연락처와의 대화를 생성·조회하고 메시지 전송"
+              },
+              "order": 3
+            }
           },
           {
             "id": "PR #6399",
@@ -149,7 +161,8 @@
               "impact": {
                 "en": "Reads response headers from internal hosts, including cloud metadata endpoints",
                 "ko": "내부 호스트와 클라우드 메타데이터 엔드포인트의 응답 헤더 조회"
-              }
+              },
+              "order": 2
             }
           }
         ]
@@ -170,17 +183,7 @@
             "severity": "High",
             "cvss": "CVSS 4.0 7.7",
             "url": "https://github.com/NangoHQ/nango/security/advisories/GHSA-8m28-9wcj-v8ww",
-            "writeup": "",
-            "featured": {
-              "vector": {
-                "en": "Attacker-controlled group key interpolated into a Postgres NOTIFY via the unauthenticated orchestrator API",
-                "ko": "인증 없는 orchestrator API로 넘긴 group key가 Postgres NOTIFY 구문에 그대로 들어감"
-              },
-              "impact": {
-                "en": "Arbitrary multi-statement SQL execution on the orchestrator database",
-                "ko": "orchestrator DB에서 여러 SQL 문을 임의로 실행"
-              }
-            }
+            "writeup": ""
           },
           {
             "id": "GHSA-gj7m-w85q-hrj7",
