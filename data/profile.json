@@ -1039,31 +1039,8 @@
     "url": ""
   },
   "awards": [],
-  "certs": [
-    {
-      "title": {
-        "en": "Network Administrator Level 2",
-        "ko": "네트워크관리사 2급"
-      },
-      "year": "2019"
-    },
-    {
-      "title": {
-        "en": "Linux Master Level 2",
-        "ko": "리눅스마스터 2급"
-      },
-      "year": "2018"
-    }
-  ],
-  "education": [
-    {
-      "title": {
-        "en": "B.S. Software Convergence, Hallym University",
-        "ko": "한림대학교 소프트웨어융합 학사"
-      },
-      "year": "2025"
-    }
-  ],
+  "certs": [],
+  "education": [],
   "contact": {
     "email": "tmdals7205@gmail.com",
     "links": [
