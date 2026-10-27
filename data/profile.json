@@ -1083,7 +1083,8 @@
           "label": "#6407",
           "url": "https://github.com/ubicloud/ubicloud/pull/6407"
         }
-      ]
+      ],
+      "stars": "12.4k"
     },
     {
       "id": "v3.8.8",
@@ -1101,7 +1102,8 @@
           "label": "#3847",
           "url": "https://github.com/strangerstudios/paid-memberships-pro/pull/3847"
         }
-      ]
+      ],
+      "stars": "533"
     },
     {
       "id": "GHSA-p78q-3v9r-c8qg",
@@ -1113,7 +1115,8 @@
       "severity": "",
       "cvss": "",
       "url": "https://github.com/Countly/countly-server/security/advisories/GHSA-p78q-3v9r-c8qg",
-      "writeup": ""
+      "writeup": "",
+      "stars": "5.9k"
     }
   ]
 }
