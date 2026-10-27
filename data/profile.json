@@ -150,8 +150,8 @@
       },
       {
         "title": {
-          "en": "Injection",
-          "ko": "인젝션"
+          "en": "Injection & input handling",
+          "ko": "인젝션·입력값 처리"
         },
         "items": [
           {
@@ -177,12 +177,24 @@
             "cvss": "CVSS 3.1 8.8",
             "url": "https://github.com/teableio/teable/security/advisories/GHSA-gj7m-w85q-hrj7",
             "writeup": ""
+          },
+          {
+            "id": "GHSA-p78q-3v9r-c8qg",
+            "target": "Countly/countly-server",
+            "summary": {
+              "en": "Unauthenticated stored prototype pollution via an event segmentation value, corrupting analytics for other apps served by the same worker",
+              "ko": "이벤트 segmentation 값을 통한 비인증 저장형 Prototype Pollution. 같은 워커가 처리하는 다른 앱의 분석 데이터까지 오염"
+            },
+            "severity": "High",
+            "cvss": "CVSS 3.1 7.5",
+            "url": "https://github.com/Countly/countly-server/security/advisories/GHSA-p78q-3v9r-c8qg",
+            "writeup": ""
           }
         ]
       }
     ],
-    "pending": 7,
-    "pending_rewarded": 1
+    "pending": 6,
+    "pending_rewarded": 0
   },
   "projects": [
     {
@@ -1081,6 +1093,18 @@
           "url": "https://github.com/strangerstudios/paid-memberships-pro/pull/3847"
         }
       ]
+    },
+    {
+      "id": "GHSA-p78q-3v9r-c8qg",
+      "target": "Countly/countly-server",
+      "summary": {
+        "en": "Unauthenticated stored prototype pollution",
+        "ko": "비인증 저장형 Prototype Pollution"
+      },
+      "severity": "",
+      "cvss": "",
+      "url": "https://github.com/Countly/countly-server/security/advisories/GHSA-p78q-3v9r-c8qg",
+      "writeup": ""
     }
   ]
 }
