@@ -10,7 +10,7 @@
       home: "Home", research: "Research", projects: "Projects", experience: "Experience", contact: "Contact",
       awards: "Awards", certs: "Certifications", education: "Education",
       short: { awards: "Awards", certs: "Certs", education: "Education" }, join: " & ",
-      featured: "Featured", all: "All findings", target: "TARGET", vector: "VECTOR", impact: "IMPACT",
+      featured: "Featured", all: "All findings", starsAsOf: (d) => `★ GitHub stars as of ${d}`, target: "TARGET", vector: "VECTOR", impact: "IMPACT",
       credited: "Credited", writeup: "write-up", updated: "Last updated", scroll: "scroll ↓",
       stats: { cve: "CVEs", credited: "Credited findings", bounty: "Bug bounties", pending: "Pending disclosure" },
       bounties: "Bug Bounty",
@@ -25,7 +25,7 @@
       home: "홈", research: "연구", projects: "프로젝트", experience: "경력", contact: "연락처",
       awards: "수상", certs: "자격증", education: "학력",
       short: { awards: "수상", certs: "자격", education: "학력" }, join: "·",
-      featured: "대표 사례", all: "전체 목록", target: "TARGET", vector: "VECTOR", impact: "IMPACT",
+      featured: "대표 사례", all: "전체 목록", starsAsOf: (d) => `★ GitHub star 수, ${d} 기준`, target: "TARGET", vector: "VECTOR", impact: "IMPACT",
       credited: "크레딧", writeup: "분석 글", updated: "최종 수정", scroll: "스크롤 ↓",
       stats: { cve: "CVE", credited: "크레딧", bounty: "버그바운티", pending: "공개 대기" },
       bounties: "버그바운티",
@@ -69,6 +69,8 @@
     blog: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg>',
   };
 
+  // GitHub stars of the target repository, recorded in the data with a date (research.stars_asof).
+  const stars = (f) => (f.stars ? ` <span class="stars" title="GitHub stars">★ ${esc(f.stars)}</span>` : "");
   const badges = (f) =>
     `<span class="badges">${f.severity ? `<span class="badge ${esc(f.severity.toLowerCase())}">${esc(f.severity)}</span>` : ""}${
       f.cvss ? `<span class="badge">${esc(f.cvss)}</span>` : ""
@@ -193,7 +195,7 @@
             (f) => `<article class="card reveal">
               <div class="top">${ext(f.url, `${esc(f.id)} ↗`)}${badges(f)}</div>
               <dl>
-                <div><dt>${ui.target}</dt><dd class="target">${esc(f.target)}</dd></div>
+                <div><dt>${ui.target}</dt><dd class="target">${esc(f.target)}${stars(f)}</dd></div>
                 <div><dt>${ui.vector}</dt><dd>${esc(t(f.featured.vector))}</dd></div>
                 <div><dt>${ui.impact}</dt><dd>${esc(t(f.featured.impact))}</dd></div>
               </dl>
@@ -203,13 +205,13 @@
       : "";
     const row = (f) => `<div class="row">
               <div class="id">${ext(f.url, `${esc(f.id === "Credited" ? ui.credited : f.id)} ↗`)}</div>
-              <div><span class="repo">${esc(f.target)}</span> <span class="what">· ${esc(t(f.summary))}</span>${
+              <div><span class="repo">${esc(f.target)}</span>${stars(f)} <span class="what">· ${esc(t(f.summary))}</span>${
                 (f.refs || []).map((x) => ` ${ext(x.url, `${esc(t(x.label))} ↗`)}`).join("")}${f.writeup ? ` ${ext(f.writeup, esc(ui.writeup))}` : ""
               }</div>
               ${badges(f)}
             </div>`;
     const bountyHtml = (d.bounties || []).length ? `<div class="group reveal">${d.bounties.map(row).join("")}</div>` : "";
-    const table = `<div class="sub reveal">${esc(ui.all)}</div><div class="groups">${(r.groups || [])
+    const table = `<div class="sub reveal">${esc(ui.all)}${r.stars_asof ? `<span class="asof">${esc(ui.starsAsOf(r.stars_asof))}</span>` : ""}</div><div class="groups">${(r.groups || [])
       .map(
         (g) => `<div class="group reveal"><h3>${esc(t(g.title))}</h3>${(g.items || [])
           .map(

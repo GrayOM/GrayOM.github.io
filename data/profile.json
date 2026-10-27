@@ -49,7 +49,8 @@
                 "ko": "다른 테넌트의 메시지 브로커 비밀번호를 평문으로 조회"
               },
               "order": 1
-            }
+            },
+            "stars": "2.9k"
           },
           {
             "id": "GHSA-2333-p777-m9ww",
@@ -61,7 +62,8 @@
             "severity": "High",
             "cvss": "CVSS 3.1 8.1",
             "url": "https://github.com/teableio/teable/security/advisories/GHSA-2333-p777-m9ww",
-            "writeup": ""
+            "writeup": "",
+            "stars": "21.9k"
           },
           {
             "id": "CVE-2026-115725",
@@ -101,7 +103,8 @@
                 "ko": "다른 계정 연락처와의 대화를 생성·조회하고 메시지 전송"
               },
               "order": 3
-            }
+            },
+            "stars": "38.4k"
           },
           {
             "id": "GHSA-46hr-c4pm-7mx5",
@@ -113,7 +116,8 @@
             "severity": "Moderate",
             "cvss": "CVSS 3.1 5.3",
             "url": "https://github.com/supertokens/supertokens-node/security/advisories/GHSA-46hr-c4pm-7mx5",
-            "writeup": ""
+            "writeup": "",
+            "stars": "329"
           }
         ]
       },
@@ -144,7 +148,8 @@
                 "ko": "내부 호스트와 클라우드 메타데이터 엔드포인트의 응답 헤더 조회"
               },
               "order": 2
-            }
+            },
+            "stars": "1.2k"
           }
         ]
       },
@@ -164,7 +169,8 @@
             "severity": "High",
             "cvss": "CVSS 4.0 7.7",
             "url": "https://github.com/NangoHQ/nango/security/advisories/GHSA-8m28-9wcj-v8ww",
-            "writeup": ""
+            "writeup": "",
+            "stars": "13.0k"
           },
           {
             "id": "GHSA-gj7m-w85q-hrj7",
@@ -176,7 +182,8 @@
             "severity": "High",
             "cvss": "CVSS 3.1 8.8",
             "url": "https://github.com/teableio/teable/security/advisories/GHSA-gj7m-w85q-hrj7",
-            "writeup": ""
+            "writeup": "",
+            "stars": "21.9k"
           },
           {
             "id": "GHSA-p78q-3v9r-c8qg",
@@ -188,13 +195,15 @@
             "severity": "High",
             "cvss": "CVSS 3.1 7.5",
             "url": "https://github.com/Countly/countly-server/security/advisories/GHSA-p78q-3v9r-c8qg",
-            "writeup": ""
+            "writeup": "",
+            "stars": "5.9k"
           }
         ]
       }
     ],
     "pending": 6,
-    "pending_rewarded": 0
+    "pending_rewarded": 0,
+    "stars_asof": "2026-10-27"
   },
   "projects": [
     {
