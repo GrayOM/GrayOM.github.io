@@ -50,7 +50,16 @@
               },
               "order": 1
             },
-            "stars": "2.9k"
+            "stars": "2.9k",
+            "refs": [
+              {
+                "label": {
+                  "en": "CVE record",
+                  "ko": "CVE 레코드"
+                },
+                "url": "https://www.cve.org/CVERecord?id=CVE-2026-81505"
+              }
+            ]
           },
           {
             "id": "GHSA-2333-p777-m9ww",
@@ -149,7 +158,16 @@
               },
               "order": 2
             },
-            "stars": "1.2k"
+            "stars": "1.2k",
+            "refs": [
+              {
+                "label": {
+                  "en": "CVE record",
+                  "ko": "CVE 레코드"
+                },
+                "url": "https://www.cve.org/CVERecord?id=CVE-2026-81506"
+              }
+            ]
           }
         ]
       },
