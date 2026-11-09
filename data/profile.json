@@ -65,7 +65,7 @@
             "id": "GHSA-2333-p777-m9ww",
             "target": "teableio/teable",
             "summary": {
-              "en": "Share-view scope bypass on by-id selection endpoints: read, overwrite or delete beyond the shared scope (co-reported)",
+              "en": "Share-view scope bypass on by-id selection endpoints. A share link can read, overwrite or delete records outside the shared scope (co-reported)",
               "ko": "공유 뷰 권한 우회. ID 기반 선택 API로 공유 범위 밖 레코드를 조회·수정·삭제 (공동 제보)"
             },
             "severity": "High",
@@ -78,7 +78,7 @@
             "id": "CVE-2026-115725",
             "target": "chatwoot/chatwoot",
             "summary": {
-              "en": "Cross-account authorization bypass: an agent bot supplying another account's contact inbox source_id can create or retrieve conversations and post messages to that account's contacts",
+              "en": "Cross-account authorization bypass. An agent bot that supplies another account's contact inbox source_id can create or retrieve conversations and post messages to that account's contacts",
               "ko": "계정 간 인가 우회. 에이전트 봇이 다른 계정의 contact inbox source_id를 넣어 그 계정 연락처의 대화를 생성·조회하고 메시지를 보낼 수 있음"
             },
             "severity": "Low",
@@ -230,7 +230,7 @@
       },
       "why": {
         "en": [
-          "Most AI source-review tools read a sample of files that look important and report what a single function shows. This lab is designed differently: it reads the whole tree, looks deliberately at the classes AI tends to miss, and hands everything it learned to the final review."
+          "Most AI source-review tools read a sample of files that look important and report what one function shows. This lab reads the whole tree, checks the classes AI review tends to miss, and passes everything it learned to the final review."
         ],
         "ko": [
           "일반적인 AI 소스코드 진단 도구는 중요해 보이는 파일 일부만 읽고, 함수 하나에서 보이는 것만 보고한다. 이 랩은 설계부터 다르다. 프로젝트 전체를 읽고, AI가 놓치기 쉬운 취약점 유형을 따로 진단한 뒤, 앞 단계에서 모은 정보를 모두 넘겨 최종 분석을 한다."
@@ -239,7 +239,7 @@
       "features": [
         {
           "title": {
-            "en": "Every file, not a sample",
+            "en": "Reads every file",
             "ko": "파일 전수 읽기"
           },
           "text": {
@@ -263,7 +263,7 @@
             "ko": "정보를 모두 받은 분석 (2a)"
           },
           "text": {
-            "en": "The final review receives everything the earlier stages produced: runtime measurements, the full-tree facts, tool results and the weak-spot candidates. It must give every item a verdict.",
+            "en": "The final review gets everything the earlier stages produced. That includes runtime measurements, the full-tree facts, tool results and the weak-spot candidates, and the review gives each item a verdict.",
             "ko": "최종 분석 단계는 앞 단계의 결과(런타임 측정, 전수 읽기 결과, 도구 결과, 약점 진단 후보)를 모두 받고, 항목마다 판정을 남긴다."
           }
         },
@@ -300,20 +300,20 @@
       ],
       "flow": {
         "en": [
-          "Admission: check the target's disclosure route",
+          "Admission, checking the target's disclosure route",
           "Docker lab and runtime probe",
           "Full-tree read of every file",
-          "Tool scans: static rules, reachability, fix variants",
+          "Tool scans with static rules, reachability and fix variants",
           "Weak-spot diagnosis",
           "Informed review (2a)",
           "Independent cold review (2b)",
           "Reproduction in the lab and report"
         ],
         "ko": [
-          "대상 선정: 제보 경로 확인",
+          "대상 선정과 제보 경로 확인",
           "Docker 랩 구성과 런타임 측정",
           "모든 파일 전수 읽기",
-          "도구 진단: 정적 규칙, 도달 가능성, 패치 변형",
+          "정적 규칙, 도달 가능성, 패치 변형 도구 진단",
           "AI 약점 영역 진단",
           "정보를 모두 받은 분석 (2a)",
           "독립 분석 (2b)",
@@ -377,8 +377,8 @@
         },
         {
           "title": {
-            "en": "Assessment levels 1–5",
-            "ko": "진단 단계 1–5"
+            "en": "Assessment levels 1 to 5",
+            "ko": "진단 단계 1~5"
           },
           "text": {
             "en": "Each level sets how far the agent may go, from passive observation to approved validation.",
@@ -704,7 +704,7 @@
       },
       "why": {
         "en": [
-          "Many clients worry first about availability: any reconnaissance that might slow their service is a problem. ALR is built for that case. It collects only what can be learned with minimal traffic, which makes it the most OSINT that can be done when availability is the main concern."
+          "Many clients worry about availability first, and any reconnaissance that might slow their service is a problem. ALR is built for that case. It collects only what can be learned with minimal traffic, which makes it the most OSINT that can be done when availability is the main concern."
         ],
         "ko": [
           "가용성을 가장 걱정하는 고객사가 많다. 서비스에 조금이라도 부담을 주는 정찰은 문제가 된다. ALR은 그런 상황을 위해 만들었다. 최소한의 트래픽으로 알 수 있는 정보만 모으기 때문에, 가용성이 최우선인 고객사 입장에서 할 수 있는 최대한의 OSINT다."
@@ -820,7 +820,7 @@
       },
       "why": {
         "en": [
-          "Many people want to become hackers but do not know how to start studying, and plain study material gets boring fast. Hack Guidance wraps the learning in a game concept: each challenge is a case to investigate."
+          "Many people want to become hackers but do not know how to start studying, and plain study material gets boring fast. Hack Guidance turns the learning into a game where each challenge is a case to investigate."
         ],
         "ko": [
           "해커가 되고 싶어도 어떻게 공부해야 할지 모르는 사람이 많고, 공부만 하다 보면 금방 지루해진다. Hack Guidance는 학습을 게임 컨셉으로 묶었다. 문제마다 조사해야 할 사건이 주어진다."
@@ -925,7 +925,7 @@
       },
       "why": {
         "en": [
-          "During manual testing, the useful clues are often left by developers: a commented-out endpoint, test code, a debug message. These rules filter traffic for those words so such leaks stand out instead of scrolling past."
+          "During manual testing, the useful clues are often things developers left behind, such as a commented-out endpoint, test code or a debug message. These rules filter traffic for those words so the leaks stand out instead of scrolling past."
         ],
         "ko": [
           "수동 진단에서 쓸모 있는 단서는 개발자가 남겨 둔 것인 경우가 많다. 주석 처리된 엔드포인트, 테스트 코드, 디버그 메시지 같은 것들이다. 이 규칙은 트래픽에서 그런 단어를 걸러, 정보 노출 가능성이 있는 흔적이 묻히지 않고 눈에 띄게 한다."
@@ -1047,7 +1047,7 @@
       }
     ]
   },
-  "updated": "2026-10",
+  "updated": "2026-11",
   "sections": {
     "research": {
       "en": "",
@@ -1076,7 +1076,7 @@
       "id": "PR #6399",
       "target": "ubicloud/ubicloud",
       "summary": {
-        "en": "Two information disclosure issues across projects: UBID resolution and audit-log links",
+        "en": "Two information disclosure issues across projects, through UBID resolution and audit-log links",
         "ko": "프로젝트 간 정보 노출 2건 (UBID 조회, 감사 로그 링크)"
       },
       "severity": "",

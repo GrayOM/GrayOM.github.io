@@ -63,10 +63,12 @@
   // Logo artwork lives in assets/logo.png (transparent PNG).
   const MARK = `<img class="mark" src="assets/logo.png" width="391" height="640" alt="GrayOM logo">`;
 
+  // Lucide icons (ISC license): mail, github, pen-line. Decorative, so hidden from screen readers.
+  const ICON = (paths) => `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">${paths}</svg>`;
   const ICONS = {
-    mail: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>',
-    github: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg>',
-    blog: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg>',
+    mail: ICON('<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>'),
+    github: ICON('<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/>'),
+    blog: ICON('<path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/>'),
   };
 
   // GitHub stars of the target repository, recorded in the data with a date (research.stars_asof).
@@ -77,7 +79,7 @@
     }${f.bounty ? `<span class="badge bounty">${esc(UI[lang].bounty)}</span>` : ""}</span>`;
 
   const head = (n, id, title, desc) =>
-    `<div class="reveal"><div class="label">${String(n).padStart(2, "0")} — ${esc(id)}</div><h2>${esc(title)}</h2>${
+    `<div class="reveal"><div class="label">${String(n).padStart(2, "0")} / ${esc(id)}</div><h2>${esc(title)}</h2>${
       desc ? `<p class="desc">${esc(desc)}</p>` : ""
     }</div>`;
 
@@ -117,8 +119,8 @@
     const principles = (t(p.principles) || []).length ? `<ul class="principles">${t(p.principles).map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : "";
     const prev = list[i - 1], next = list[i + 1];
     const pager = `<div class="pager">${
-      prev ? `<a class="card" href="${pageUrl(prev.slug)}"><span class="l">← ${esc(ui.prev)}</span>${esc(prev.name)}</a>` : "<span></span>"
-    }${next ? `<a class="card next" href="${pageUrl(next.slug)}"><span class="l">${esc(ui.next)} →</span>${esc(next.name)}</a>` : "<span></span>"}</div>`;
+      prev ? `<a class="card" href="${pageUrl(prev.slug)}"><span class="l"><span aria-hidden="true">←</span> ${esc(ui.prev)}</span>${esc(prev.name)}</a>` : "<span></span>"
+    }${next ? `<a class="card next" href="${pageUrl(next.slug)}"><span class="l">${esc(ui.next)} <span aria-hidden="true">→</span></span>${esc(next.name)}</a>` : "<span></span>"}</div>`;
 
     root.innerHTML = `${navHtml(["home", "research", "projects", "experience", "contact"], true)}
       <main class="wrap detail">
@@ -193,7 +195,7 @@
       ? `<div class="sub reveal">${esc(ui.featured)}</div><div class="feat">${feat
           .map(
             (f) => `<article class="card reveal">
-              <div class="top">${ext(f.url, `${esc(f.id)} ↗`)}${badges(f)}</div>
+              <div class="top">${ext(f.url, `${esc(f.id)} <span aria-hidden="true">↗</span>`)}${badges(f)}</div>
               <dl>
                 <div><dt>${ui.target}</dt><dd class="target">${esc(f.target)}${stars(f)}</dd></div>
                 <div><dt>${ui.vector}</dt><dd>${esc(t(f.featured.vector))}</dd></div>
@@ -204,9 +206,9 @@
           .join("")}</div>`
       : "";
     const row = (f) => `<div class="row">
-              <div class="id">${ext(f.url, `${esc(f.id === "Credited" ? ui.credited : f.id)} ↗`)}</div>
+              <div class="id">${ext(f.url, `${esc(f.id === "Credited" ? ui.credited : f.id)} <span aria-hidden="true">↗</span>`)}</div>
               <div><span class="repo">${esc(f.target)}</span>${stars(f)} <span class="what">· ${esc(t(f.summary))}</span>${
-                (f.refs || []).map((x) => ` ${ext(x.url, `${esc(t(x.label))} ↗`)}`).join("")}${f.writeup ? ` ${ext(f.writeup, esc(ui.writeup))}` : ""
+                (f.refs || []).map((x) => ` ${ext(x.url, `${esc(t(x.label))} <span aria-hidden="true">↗</span>`)}`).join("")}${f.writeup ? ` ${ext(f.writeup, esc(ui.writeup))}` : ""
               }</div>
               ${badges(f)}
             </div>`;
@@ -226,7 +228,7 @@
       .map(
         (p, k) => `<a class="card proj reveal" href="${pageUrl(p.slug)}">
           <div class="num">${String(k + 1).padStart(2, "0")}</div>
-          <div class="h"><span>${esc(p.name)}</span><span class="arr">→</span></div>
+          <div class="h"><span>${esc(p.name)}</span><span class="arr" aria-hidden="true">→</span></div>
           <p>${esc(t(p.summary))}</p>
           ${p.tags && p.tags.length ? `<div class="tags">${p.tags.map((x) => `<span class="tag">${esc(x)}</span>`).join("")}</div>` : ""}
         </a>`
