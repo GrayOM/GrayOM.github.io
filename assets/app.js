@@ -167,7 +167,7 @@
         <div>
           <h1 class="name">${esc(d.handle)}</h1>
           <p class="kname">${esc(t(d.name))}</p>
-          <p class="line">${esc(t(d.tagline))}</p>
+          <p class="line">${esc(t(d.tagline))}<span class="cursor" aria-hidden="true"></span></p>
           ${d.copyright ? `<p class="copy">${esc(d.copyright)}</p>` : ""}
         </div>
       </div>
@@ -195,6 +195,7 @@
       ? `<div class="sub reveal">${esc(ui.featured)}</div><div class="feat">${feat
           .map(
             (f) => `<article class="card reveal">
+              <div class="term" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="path">~/research/${esc(f.target.split("/")[1] || f.target)}</span></div>
               <div class="top">${ext(f.url, `${esc(f.id)} <span aria-hidden="true">↗</span>`)}${badges(f)}</div>
               <dl>
                 <div><dt>${ui.target}</dt><dd class="target">${esc(f.target)}${stars(f)}</dd></div>
@@ -336,7 +337,10 @@
   function reveal(animate) {
     const els = [...root.querySelectorAll(".reveal")];
     if (!animate || !("IntersectionObserver" in window)) {
-      els.forEach((el) => el.classList.add("in"));
+      els.forEach((el) => {
+        el.style.animation = "none"; // already-read content shows at once
+        el.classList.add("in");
+      });
       return;
     }
     const io = new IntersectionObserver(
@@ -349,7 +353,43 @@
         }),
       { rootMargin: "0px 0px -8% 0px" }
     );
-    els.forEach((el) => io.observe(el));
+    els.forEach((el) => {
+      const sibs = [...el.parentElement.children].filter((c) => c.classList.contains("reveal"));
+      el.style.setProperty("--d", `${Math.min(sibs.indexOf(el), 5) * 80}ms`);
+      io.observe(el);
+    });
+    countUp();
+  }
+
+  // Stats count up from 0 the first time they come into view.
+  function countUp() {
+    const nums = [...root.querySelectorAll(".stats .n")];
+    if (!nums.length || matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
+    const io = new IntersectionObserver((entries) => {
+      if (!entries.some((e) => e.isIntersecting)) return;
+      io.disconnect();
+      nums.forEach((el) => {
+        const end = parseInt(el.textContent, 10);
+        if (!end) return;
+        const start = performance.now();
+        const step = (now) => {
+          const k = Math.min((now - start) / 900, 1);
+          el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3)));
+          if (k < 1) requestAnimationFrame(step);
+        };
+        el.textContent = "0";
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.4 });
+    io.observe(nums[0].closest(".stats"));
+  }
+
+  // Home parallax: the logo and the glow behind it move slower than the page.
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduceMotion) {
+    window.addEventListener("scroll", () => {
+      document.documentElement.style.setProperty("--sy", String(Math.min(window.scrollY, 1200)));
+    }, { passive: true });
   }
 
   function setLang(next) {
