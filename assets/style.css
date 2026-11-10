@@ -1,13 +1,15 @@
-/* Dark only. One accent (emerald) reserved for IDs, links, the active state and the logo's single point. */
+/* Dark only. Palette from the UI UX Pro Max design system (Dark Mode OLED, terminal dark + green).
+   One accent (emerald) reserved for IDs, links, the active state and the logo's single point. */
 :root {
-  --bg: #070b11;
-  --surface: #0c121a;
-  --surface-2: #101822;
-  --line: #1a2430;
-  --line-2: #243142;
-  --fg: #e6ebf0;
-  --fg-2: #b4bfca;
-  --muted: #7a8794;
+  --bg: #020617;
+  --surface: #0e1223;
+  --surface-2: #131a2e;
+  --line: #1e293b;
+  --line-2: #334155;
+  --fg: #f8fafc;
+  --fg-2: #cbd5e1;
+  --muted: #94a3b8;
+  --head: "JetBrains Mono", ui-monospace, "Noto Sans KR", monospace;
   --accent: #34d399;
   --accent-dim: rgba(52, 211, 153, 0.12);
   --high: #f2846b;
@@ -61,7 +63,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   padding: 5px;
   border: 1px solid var(--line-2);
   border-radius: 999px;
-  background: rgba(10, 15, 22, 0.78);
+  background: rgba(2, 6, 23, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
@@ -98,7 +100,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 .home .inner { display: flex; align-items: center; gap: clamp(28px, 6vw, 72px); }
 .home .mark { height: clamp(220px, 46vh, 400px); width: auto; flex: none; filter: drop-shadow(0 12px 40px rgba(0, 0, 0, 0.55)); }
-.home .name { margin: 0; font: 800 clamp(3.4rem, 10vw, 7.2rem)/0.95 "Inter", system-ui, sans-serif; letter-spacing: -0.045em; }
+.home .name { margin: 0; font: 700 clamp(3rem, 9vw, 6.4rem)/1 var(--head); letter-spacing: -0.05em; }
 .home .kname { margin: 10px 0 0; font: 500 1.05rem var(--sans); color: var(--fg-2); letter-spacing: 0.02em; }
 .home .line { margin: 18px 0 0; font-size: clamp(1rem, 1.6vw, 1.15rem); color: var(--fg-2); max-width: 34ch; }
 .home .copy { margin: 22px 0 0; font: 0.75rem var(--mono); color: var(--muted); letter-spacing: 0.04em; }
@@ -106,7 +108,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .home .scroll:hover { color: var(--accent); text-decoration: none; }
 
 /* ── stats ─────────────────────────────────────── */
-.stats { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: 14px; background: rgba(12, 18, 26, 0.7); }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: 14px; background: rgba(14, 18, 35, 0.75); }
 .stats > div { padding: 24px; }
 .stats > div + div { border-left: 1px solid var(--line); }
 .stats .n { font: 600 2.2rem/1 var(--mono); color: var(--fg); letter-spacing: -0.02em; }
@@ -120,7 +122,8 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 /* ── sections ──────────────────────────────────── */
 .sec { padding-top: 112px; }
 .sec .label { font: 500 0.75rem var(--mono); color: var(--accent); letter-spacing: 0.18em; text-transform: uppercase; }
-.sec h2 { margin: 12px 0 0; font: 800 clamp(2.4rem, 6vw, 4rem)/1.05 var(--sans); letter-spacing: -0.035em; }
+.sec h2 { margin: 12px 0 0; font: 700 clamp(2.2rem, 5.6vw, 3.6rem)/1.1 var(--head); letter-spacing: -0.04em; }
+html[lang="ko"] .sec h2 { font-family: var(--sans); font-weight: 800; }
 .sec .label::before { content: ""; display: inline-block; width: 24px; height: 1px; margin-right: 10px; vertical-align: middle; background: var(--accent); }
 .sec .desc { margin: 14px 0 0; max-width: 44rem; color: var(--fg-2); }
 .sec .body { margin-top: 40px; }
@@ -129,10 +132,10 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .card {
   border: 1px solid var(--line);
   border-radius: 14px;
-  background: linear-gradient(180deg, rgba(16, 24, 34, 0.9), rgba(12, 18, 26, 0.9));
+  background: linear-gradient(180deg, rgba(19, 26, 46, 0.92), rgba(14, 18, 35, 0.92));
   transition: border-color 0.2s, transform 0.2s;
 }
-.card { transition: border-color 0.35s, transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s; }
+.card { transition: border-color 0.25s, transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.25s; }
 .card:hover { border-color: rgba(52, 211, 153, 0.55); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 0 24px rgba(52, 211, 153, 0.08); }
 
 /* featured findings */
@@ -211,7 +214,7 @@ footer { margin: 120px 0 0; padding: 28px 0 40px; border-top: 1px solid var(--li
 .back:hover { color: var(--accent); text-decoration: none; }
 .dhead { margin-top: 28px; }
 .dhead .label { font: 500 0.75rem var(--mono); color: var(--accent); letter-spacing: 0.18em; }
-.dhead h1 { margin: 12px 0 0; font: 800 clamp(2.2rem, 5.4vw, 3.6rem)/1.08 "Inter", var(--sans); letter-spacing: -0.035em; }
+.dhead h1 { margin: 12px 0 0; font: 700 clamp(2rem, 5vw, 3.2rem)/1.12 var(--head); letter-spacing: -0.04em; }
 .lede { margin: 18px 0 0; max-width: 44rem; font-size: clamp(1.05rem, 1.8vw, 1.2rem); color: var(--fg-2); }
 .dhead .tags { margin-top: 18px; }
 .btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
@@ -225,7 +228,7 @@ footer { margin: 120px 0 0; padding: 28px 0 40px; border-top: 1px solid var(--li
 .feat-item h3 { margin: 0 0 6px; font: 600 1rem var(--sans); }
 .feat-item p { margin: 0; color: var(--fg-2); font-size: 0.93rem; }
 .flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; counter-reset: none; }
-.flow li { display: flex; gap: 12px; align-items: baseline; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: rgba(12, 18, 26, 0.7); font-size: 0.93rem; }
+.flow li { display: flex; gap: 12px; align-items: baseline; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: rgba(14, 18, 35, 0.75); font-size: 0.93rem; }
 .flow .k { font: 600 0.78rem var(--mono); color: var(--accent); flex: none; }
 .principles { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
 .principles li { position: relative; padding-left: 22px; color: var(--fg-2); }
@@ -316,3 +319,8 @@ footer { margin: 120px 0 0; padding: 28px 0 40px; border-top: 1px solid var(--li
   .home .mark { transform: none; }
   .home .cursor { animation: none; }
 }
+
+/* design system key effect: minimal glow on accent identifiers */
+.row .id a, .feat .top a, .dhead .label, .sec .label { text-shadow: 0 0 10px rgba(52, 211, 153, 0.35); }
+a, button, .card { cursor: pointer; }
+.card:not(a) { cursor: default; }
