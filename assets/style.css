@@ -9,7 +9,6 @@
   --fg: #f8fafc;
   --fg-2: #cbd5e1;
   --muted: #94a3b8;
-  --head: "JetBrains Mono", ui-monospace, "Noto Sans KR", monospace;
   --accent: #34d399;
   --accent-dim: rgba(52, 211, 153, 0.12);
   --high: #f2846b;
@@ -100,7 +99,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 .home .inner { display: flex; align-items: center; gap: clamp(28px, 6vw, 72px); }
 .home .mark { height: clamp(220px, 46vh, 400px); width: auto; flex: none; filter: drop-shadow(0 12px 40px rgba(0, 0, 0, 0.55)); }
-.home .name { margin: 0; font: 700 clamp(3rem, 9vw, 6.4rem)/1 var(--head); letter-spacing: -0.05em; }
+.home .name { margin: 0; font: 800 clamp(3.4rem, 10vw, 7.2rem)/0.95 "Inter", system-ui, sans-serif; letter-spacing: -0.045em; }
 .home .kname { margin: 10px 0 0; font: 500 1.05rem var(--sans); color: var(--fg-2); letter-spacing: 0.02em; }
 .home .line { margin: 18px 0 0; font-size: clamp(1rem, 1.6vw, 1.15rem); color: var(--fg-2); max-width: 34ch; }
 .home .copy { margin: 22px 0 0; font: 0.75rem var(--mono); color: var(--muted); letter-spacing: 0.04em; }
@@ -122,8 +121,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 /* ── sections ──────────────────────────────────── */
 .sec { padding-top: 112px; }
 .sec .label { font: 500 0.75rem var(--mono); color: var(--accent); letter-spacing: 0.18em; text-transform: uppercase; }
-.sec h2 { margin: 12px 0 0; font: 700 clamp(2.2rem, 5.6vw, 3.6rem)/1.1 var(--head); letter-spacing: -0.04em; }
-html[lang="ko"] .sec h2 { font-family: var(--sans); font-weight: 800; }
+.sec h2 { margin: 12px 0 0; font: 800 clamp(2.4rem, 6vw, 4rem)/1.05 var(--sans); letter-spacing: -0.035em; }
 .sec .label::before { content: ""; display: inline-block; width: 24px; height: 1px; margin-right: 10px; vertical-align: middle; background: var(--accent); }
 .sec .desc { margin: 14px 0 0; max-width: 44rem; color: var(--fg-2); }
 .sec .body { margin-top: 40px; }
@@ -214,7 +212,7 @@ footer { margin: 120px 0 0; padding: 28px 0 40px; border-top: 1px solid var(--li
 .back:hover { color: var(--accent); text-decoration: none; }
 .dhead { margin-top: 28px; }
 .dhead .label { font: 500 0.75rem var(--mono); color: var(--accent); letter-spacing: 0.18em; }
-.dhead h1 { margin: 12px 0 0; font: 700 clamp(2rem, 5vw, 3.2rem)/1.12 var(--head); letter-spacing: -0.04em; }
+.dhead h1 { margin: 12px 0 0; font: 800 clamp(2.2rem, 5.4vw, 3.6rem)/1.08 "Inter", var(--sans); letter-spacing: -0.035em; }
 .lede { margin: 18px 0 0; max-width: 44rem; font-size: clamp(1.05rem, 1.8vw, 1.2rem); color: var(--fg-2); }
 .dhead .tags { margin-top: 18px; }
 .btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
