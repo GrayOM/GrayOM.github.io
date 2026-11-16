@@ -175,7 +175,7 @@
     </section>`;
 
     // ── stats + lead
-    const cves = items.filter((f) => /^CVE-/.test(f.id)).length;
+    const cves = [...items, ...(d.bounties || [])].filter((f) => /^CVE-/.test(f.id)).length;
     const stats = [
       [cves, ui.stats.cve, true],
       [items.length, ui.stats.credited],

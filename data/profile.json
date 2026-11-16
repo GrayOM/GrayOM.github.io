@@ -114,19 +114,6 @@
               "order": 3
             },
             "stars": "38.4k"
-          },
-          {
-            "id": "GHSA-46hr-c4pm-7mx5",
-            "target": "supertokens/supertokens-node",
-            "summary": {
-              "en": "AWS Lambda integration strips the API Gateway stage as a plain string prefix, causing path confusion",
-              "ko": "AWS Lambda 연동이 API Gateway 스테이지를 문자열 접두사로만 잘라내 생기는 경로 혼동"
-            },
-            "severity": "Moderate",
-            "cvss": "CVSS 3.1 5.3",
-            "url": "https://github.com/supertokens/supertokens-node/security/advisories/GHSA-46hr-c4pm-7mx5",
-            "writeup": "",
-            "stars": "329"
           }
         ]
       },
@@ -178,7 +165,7 @@
         },
         "items": [
           {
-            "id": "GHSA-8m28-9wcj-v8ww",
+            "id": "CVE-2026-125759",
             "target": "NangoHQ/nango",
             "summary": {
               "en": "Unauthenticated SQL injection in the task orchestrator via Postgres NOTIFY",
@@ -188,7 +175,16 @@
             "cvss": "CVSS 4.0 7.7",
             "url": "https://github.com/NangoHQ/nango/security/advisories/GHSA-8m28-9wcj-v8ww",
             "writeup": "",
-            "stars": "13.0k"
+            "stars": "13.0k",
+            "refs": [
+              {
+                "label": {
+                  "en": "CVE record",
+                  "ko": "CVE 레코드"
+                },
+                "url": "https://www.cve.org/CVERecord?id=CVE-2026-125759"
+              }
+            ]
           },
           {
             "id": "GHSA-gj7m-w85q-hrj7",
@@ -204,9 +200,39 @@
             "stars": "21.9k"
           }
         ]
+      },
+      {
+        "title": {
+          "en": "Authentication & insecure defaults",
+          "ko": "인증·안전하지 않은 기본값"
+        },
+        "items": [
+          {
+            "id": "CVE-2026-125758",
+            "target": "aptabase/aptabase",
+            "summary": {
+              "en": "Self-hosted instances that kept the example AUTH_SECRET from the official compose file accept forged sign-in links, so anyone who knows a user's email can sign in as that user and take over their apps",
+              "ko": "공식 compose 파일의 예시 AUTH_SECRET을 그대로 쓴 셀프호스팅 인스턴스는 위조한 로그인 링크를 받아들인다. 사용자 이메일만 알면 그 계정으로 로그인해 앱을 넘겨받을 수 있음"
+            },
+            "severity": "Low",
+            "cvss": "",
+            "url": "https://github.com/aptabase/aptabase/security/advisories/GHSA-gc76-cqm4-vqcf",
+            "writeup": "",
+            "stars": "1.9k",
+            "refs": [
+              {
+                "label": {
+                  "en": "CVE record",
+                  "ko": "CVE 레코드"
+                },
+                "url": "https://www.cve.org/CVERecord?id=CVE-2026-125758"
+              }
+            ]
+          }
+        ]
       }
     ],
-    "pending": 5,
+    "pending": 4,
     "pending_rewarded": 0,
     "stars_asof": "2026-10-27"
   },
@@ -1124,7 +1150,7 @@
       "stars": "5.9k"
     },
     {
-      "id": "GHSA-4rf2-xqvf-8rcx",
+      "id": "CVE-2026-123800",
       "target": "supertokens/supertokens-core",
       "summary": {
         "en": "App-scoped API key overwrites the parent connection URI domain's credentials and takes over sibling applications (co-reported)",
@@ -1134,7 +1160,42 @@
       "cvss": "CVSS 3.1 9.9",
       "url": "https://github.com/supertokens/supertokens-core/security/advisories/GHSA-4rf2-xqvf-8rcx",
       "writeup": "",
+      "stars": "15.3k",
+      "refs": [
+        {
+          "label": {
+            "en": "CVE record",
+            "ko": "CVE 레코드"
+          },
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-123800"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-8q27-96vx-r652",
+      "target": "supertokens/supertokens-core",
+      "summary": {
+        "en": "API key and IP checks were skipped for an appId that does not exist, so an unauthenticated caller could tell which appIds exist",
+        "ko": "존재하지 않는 appId 요청에서 API 키·IP 검사를 건너뛰어, 인증 없이 어떤 appId가 존재하는지 알아낼 수 있음"
+      },
+      "severity": "Moderate",
+      "cvss": "CVSS 3.1 5.3",
+      "url": "https://github.com/supertokens/supertokens-core/security/advisories/GHSA-8q27-96vx-r652",
+      "writeup": "",
       "stars": "15.3k"
+    },
+    {
+      "id": "GHSA-46hr-c4pm-7mx5",
+      "target": "supertokens/supertokens-node",
+      "summary": {
+        "en": "AWS Lambda integration strips the API Gateway stage as a plain string prefix, causing path confusion",
+        "ko": "AWS Lambda 연동이 API Gateway 스테이지를 문자열 접두사로만 잘라내 생기는 경로 혼동"
+      },
+      "severity": "Moderate",
+      "cvss": "CVSS 3.1 5.3",
+      "url": "https://github.com/supertokens/supertokens-node/security/advisories/GHSA-46hr-c4pm-7mx5",
+      "writeup": "",
+      "stars": "329"
     }
   ]
 }
