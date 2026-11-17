@@ -39,17 +39,6 @@
             "cvss": "CVSS 4.0 7.1",
             "url": "https://github.com/frain-dev/convoy/security/advisories/GHSA-p5vg-v7mj-f6q4",
             "writeup": "",
-            "featured": {
-              "vector": {
-                "en": "Cross-project IDOR",
-                "ko": "프로젝트 간 IDOR"
-              },
-              "impact": {
-                "en": "Another tenant's message broker password returned in plaintext",
-                "ko": "다른 테넌트의 메시지 브로커 비밀번호를 평문으로 조회"
-              },
-              "order": 1
-            },
             "stars": "2.9k",
             "refs": [
               {
@@ -134,17 +123,6 @@
             "cvss": "CVSS 3.1 8.6",
             "url": "https://github.com/Swetrix/swetrix/security/advisories/GHSA-fcm9-fvcm-3p55",
             "writeup": "",
-            "featured": {
-              "vector": {
-                "en": "SEO tool actions work without login. The login redirect only hid the page.",
-                "ko": "로그인 리다이렉트만 걸린 SEO 도구 기능을 인증 없이 호출"
-              },
-              "impact": {
-                "en": "Reads response headers from internal hosts, including cloud metadata endpoints",
-                "ko": "내부 호스트와 클라우드 메타데이터 엔드포인트의 응답 헤더 조회"
-              },
-              "order": 2
-            },
             "stars": "1.2k",
             "refs": [
               {
@@ -184,7 +162,18 @@
                 },
                 "url": "https://www.cve.org/CVERecord?id=CVE-2026-125759"
               }
-            ]
+            ],
+            "featured": {
+              "vector": {
+                "en": "Unauthenticated input reaches a Postgres NOTIFY statement in the task orchestrator",
+                "ko": "인증 없이 넣은 값이 task orchestrator의 Postgres NOTIFY 구문에 들어감"
+              },
+              "impact": {
+                "en": "SQL injection against the orchestrator database without logging in",
+                "ko": "로그인 없이 orchestrator DB에 SQL 인젝션"
+              },
+              "order": 2
+            }
           },
           {
             "id": "GHSA-gj7m-w85q-hrj7",
@@ -1169,7 +1158,18 @@
           },
           "url": "https://www.cve.org/CVERecord?id=CVE-2026-123800"
         }
-      ]
+      ],
+      "featured": {
+        "vector": {
+          "en": "An API key scoped to one app overwrites the parent connection URI domain's credentials",
+          "ko": "한 앱에만 쓰라고 발급된 API 키로 상위 연결 URI 도메인의 자격증명을 덮어씀"
+        },
+        "impact": {
+          "en": "Takes over the sibling applications that share the same core",
+          "ko": "같은 코어를 쓰는 형제 애플리케이션까지 장악"
+        },
+        "order": 1
+      }
     },
     {
       "id": "GHSA-8q27-96vx-r652",

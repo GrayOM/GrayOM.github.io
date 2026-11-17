@@ -190,7 +190,7 @@
     </div>`;
 
     // ── research
-    const feat = items.filter((f) => f.featured).sort((a, b) => (a.featured.order ?? 99) - (b.featured.order ?? 99));
+    const feat = [...items, ...(d.bounties || [])].filter((f) => f.featured).sort((a, b) => (a.featured.order ?? 99) - (b.featured.order ?? 99));
     const featHtml = feat.length
       ? `<div class="sub reveal">${esc(ui.featured)}</div><div class="feat">${feat
           .map(
