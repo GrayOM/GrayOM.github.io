@@ -54,8 +54,8 @@
             "id": "GHSA-2333-p777-m9ww",
             "target": "teableio/teable",
             "summary": {
-              "en": "Share-view scope bypass on by-id selection endpoints. A share link can read, overwrite or delete records outside the shared scope (co-reported)",
-              "ko": "공유 뷰 권한 우회. ID 기반 선택 API로 공유 범위 밖 레코드를 조회·수정·삭제 (공동 제보)"
+              "en": "Share-view scope bypass on by-id selection endpoints. A share link can read, overwrite or delete records outside the shared scope",
+              "ko": "공유 뷰 권한 우회. ID 기반 선택 API로 공유 범위 밖 레코드를 조회·수정·삭제"
             },
             "severity": "High",
             "cvss": "CVSS 3.1 8.1",
@@ -1149,8 +1149,8 @@
       "id": "CVE-2026-123800",
       "target": "supertokens/supertokens-core",
       "summary": {
-        "en": "App-scoped API key overwrites the parent connection URI domain's credentials and takes over sibling applications (co-reported)",
-        "ko": "앱 단위 API 키로 상위 연결 URI 도메인의 자격증명을 덮어써 형제 애플리케이션까지 장악 (공동 제보)"
+        "en": "App-scoped API key overwrites the parent connection URI domain's credentials and takes over sibling applications",
+        "ko": "앱 단위 API 키로 상위 연결 URI 도메인의 자격증명을 덮어써 형제 애플리케이션까지 장악"
       },
       "severity": "Critical",
       "cvss": "CVSS 3.1 9.9",
