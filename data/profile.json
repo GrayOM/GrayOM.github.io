@@ -221,7 +221,7 @@
         ]
       }
     ],
-    "pending": 4,
+    "pending": 5,
     "pending_rewarded": 0,
     "stars_asof": "2026-10-27"
   },
@@ -344,11 +344,12 @@
           "모든 PoC는 로컬 Docker 안에서만 실행하고, 공개된 대상은 스캔하지 않는다.",
           "재현되지 않은 것은 보고하지 않는다."
         ]
-      }
+      },
+      "repo": "GrayOM/OSS_Vulnerability_Research_Lab"
     },
     {
-      "slug": "omtest",
-      "name": "OMtest Agent",
+      "slug": "valefor",
+      "name": "Valefor",
       "url": "",
       "links": [],
       "tags": [
@@ -363,10 +364,10 @@
       },
       "why": {
         "en": [
-          "OMtest is a research project that runs the whole web assessment flow automatically while keeping the load on the target low."
+          "Valefor is a research project that runs the whole web assessment flow automatically while keeping the load on the target low."
         ],
         "ko": [
-          "OMtest는 웹 진단 전체 흐름을 자동으로 수행하는 연구 프로젝트다. 대상에 주는 부하는 낮게 유지한다."
+          "Valefor는 웹 진단 전체 흐름을 자동으로 수행하는 연구 프로젝트다. 대상에 주는 부하는 낮게 유지한다."
         ]
       },
       "features": [
@@ -406,7 +407,7 @@
             "ko": "검증 게이트"
           },
           "text": {
-            "en": "OMtest marks a finding as verified only when it has a reproducible path, a shown impact on a test account or object, and complete evidence.",
+            "en": "Valefor marks a finding as verified only when it has a reproducible path, a shown impact on a test account or object, and complete evidence.",
             "ko": "재현 경로, 테스트 계정이나 객체에서 확인한 영향, 완전한 증거가 모두 있어야 검증된 취약점으로 분류한다."
           }
         },
@@ -416,7 +417,7 @@
             "ko": "마스킹된 증거와 보고서"
           },
           "text": {
-            "en": "OMtest masks cookies, tokens and personal data before it stores anything. Reports come out as Markdown, JSON, HTML and PDF.",
+            "en": "Valefor masks cookies, tokens and personal data before it stores anything. Reports come out as Markdown, JSON, HTML and PDF.",
             "ko": "쿠키, 토큰, 개인정보는 저장 전에 마스킹한다. 보고서는 Markdown, JSON, HTML, PDF로 만든다."
           }
         },
@@ -456,13 +457,14 @@
       "principles": {
         "en": [
           "No brute force, fuzzing or load testing. The target's availability comes first.",
-          "OMtest never writes secrets or raw response bodies to reports or logs."
+          "Valefor never writes secrets or raw response bodies to reports or logs."
         ],
         "ko": [
           "무차별 대입, 퍼징, 부하 테스트는 하지 않는다. 대상의 가용성이 먼저다.",
           "비밀 값과 응답 원문은 보고서나 로그에 남기지 않는다."
         ]
-      }
+      },
+      "repo": "GrayOM/Valefor"
     },
     {
       "slug": "mobile",
@@ -585,7 +587,8 @@
           "진단은 승인된 범위 안에서만 한다.",
           "취약점 판정에는 실행에서 나온 증거가 필요하다. 추정만으로는 판정하지 않는다."
         ]
-      }
+      },
+      "repo": "GrayOM/mobile_allinone"
     },
     {
       "slug": "agent-guidance",
@@ -695,7 +698,8 @@
           "명시적 승인 없이는 아무것도 설치하지 않는다.",
           "모든 변경은 되돌릴 수 있다."
         ]
-      }
+      },
+      "repo": "GrayOM/Agent_Guidance"
     },
     {
       "slug": "alr",
@@ -804,7 +808,8 @@
           "공격이나 익스플로잇은 하지 않는다.",
           "대상으로 가는 트래픽은 최소한으로 유지한다."
         ]
-      }
+      },
+      "repo": "GrayOM/Availability-Low-Reconnaissance"
     },
     {
       "slug": "hack-guidance",
@@ -918,7 +923,8 @@
         "ko": [
           "모든 문제는 가상 서비스에서 진행하며, 실제 시스템에는 연결하지 않는다."
         ]
-      }
+      },
+      "repo": "GrayOM/Hack_guidance"
     },
     {
       "slug": "fiddler",
@@ -1015,7 +1021,8 @@
       "principles": {
         "en": [],
         "ko": []
-      }
+      },
+      "repo": "GrayOM/Fiddler_Custom_Script"
     }
   ],
   "experience": [
